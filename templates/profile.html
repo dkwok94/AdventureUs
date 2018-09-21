@@ -9,21 +9,6 @@
   <LINK href='https://fonts.googleapis.com/css?family=Kalam' rel='stylesheet'>
   <SCRIPT src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></SCRIPT>
   <SCRIPT src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></SCRIPT>
-  <SCRIPT type="text/javascript">
-    $(document).ready(function () {
-      let imgs = ['joshua-sortino-498896-unsplash.jpg', 'theodor-lundqvist-438530-unsplash.jpg', 'cristian-moscoso-1924-unsplash.jpg', 'nathan-dumlao-576639-unsplash.jpg', 'anthony-delanoix-575672-unsplash.jpg', 'karim-manjra-702188-unsplash.jpg', 'jay-dantinne-499958-unsplash.jpg', 'jeremy-bishop-346050-unsplash.jpg', 'robert-tudor-704838-unsplash.jpg', 'john-towner-126926-unsplash.jpg', 'bady-qb-751603-unsplash.jpg', 'caleb-miller-738108-unsplash.jpg', 'christopher-czermak-705859-unsplash.jpg', 'jonathan-gallegos-727409-unsplash.jpg', 'justin-lane-753659-unsplash.jpg', 'michael-liao-725983-unsplash.jpg', 'raphael-nogueira-559166-unsplash.jpg', 'robin-noguier-572033-unsplash.jpg', 'sorasak-252182-unsplash.jpg', 'usukhbayar-gankhuyag-726907-unsplash.jpg'];
-	  $(function () {
-	      let i = 0;
-		  setInterval(function () {
-		      i++;
-			  if (i == imgs.length) {
-			      i = 0;
-			  }
-			      $('body').css('background-image', 'url(../images/' + imgs[i] + ')');
-		  }, 5000);
-	  });
-	});
-  </SCRIPT>
   <STYLE>
 	body {
 	  padding-top: 52px;
@@ -35,6 +20,12 @@
 	  background-color: #0E1C36;
 	  color: #ffffff;
 	}
+	.nav>li:hover {
+	  color: #006494;
+	}
+	.navbar-brand {
+	  padding: 5px 5px;
+	}
 	.btn {
 	  padding: 0px 10px;
 	  border-radius: 20px;
@@ -45,36 +36,60 @@
 	  background-color: #0E1C36;
 	}
 	.profile {
-	  background-color: #3247FF;
+	  background-color: #372554;
 	  border-radius: 20px;
+	  border-style: solid;
+	  border-color: #ffffff;
 	  margin-top: 20px;
+	  margin-bottom: 20px;
 	  color: #ffffff;
 	  opacity: 0.95;
-	  padding: 0px;
+	  padding: 20px;
+	  width: 750px;
 	}
 	.description {
-	  background-color: #AFCBFF;
-	  border-radius: 20px;
+	  background-color: #52528C;
+	  border-radius: 10px;
+	  width: 700px;
+	  margin-top: 15px;
+	}
+	
+	.place {
+	  background-color: #52528C;
+	  border-radius: 3px;
+	  margin: 5px;
+	  width: 231px;
+	  display: inline-block;
+	  padding-top: 5px;
+	  padding-bottom: 5px;
+	}
+	.place>p {
+	margin: 0px;
+	}
+	.language {
+	width: 100px;
+	height: 50px;
+	display: inline-block;
+	margin: 15px;
+	background: #52528C;
+	padding-top: 15px;
+	-moz-border-radius: 100px / 50px;
+	-webkit-border-radius: 100px / 50px;
+	border-radius: 100px / 50px;
+    }
+	.biotext {
+	  padding: 20px;
 	}
 	body {
-      background-image: url('../images/sorasak-252182-unsplash.jpg');
-	  background-repeat: no-repeat;
-	  background-attachment: fixed;
-	  background-position: center;
-	  background-size: cover;
-	  opacity: 1.0;
-      transition: background 4s cubic-bezier(0.4, 0, 1, 1);
-  }
-  .person {
-    border: 10px solid transparent;
-    margin-top: 25px;
-    width: 25%;
-    height: 25%;
-    opacity: 1.0;
-}
-.person:hover {
-    border-color: #f1f1f1;
-}
+	  background-color: #7C9EB2;
+    }
+    .person {
+      border: 10px solid transparent;
+      margin-top: 25px;
+      width: 25%;
+      height: 25%;
+      opacity: 1.0;
+    }
   </STYLE>
 </HEAD>
 
@@ -88,7 +103,7 @@
         <SPAN class="icon-bar"></SPAN>
         <SPAN class="icon-bar"></SPAN> 
       </BUTTON>
-      <A class="navbar-brand" href="#">Logo</A>
+      <IMG src="../icons/globe-icon-svg-15.jpg" class="navbar-brand logo" href="#"></IMG>
     </DIV>
     <DIV class="collapse navbar-collapse" id="myNavbar">
       <UL class="nav navbar-nav navbar-right">
@@ -106,9 +121,10 @@
 <DIV id="bio" class="container text-center profile">
   <IMG src="../images/users/derek.jpg" class="img-circle person" alt="Derek">
   <H2>Derek Kwok</H2>
-  <H3>Bio</H3>
+  <BUTTON type="button" class="btn btn-danger login">Add Friend</BUTTON>
+  <BUTTON type="button" class="btn btn-danger login">Edit Profile</BUTTON>
     <DIV id="internal_text" class="container text-center description">
-      <P>I am an aspiring software engineer looking for entry level software engineering positions, apprenticeships, or internships. I am currently attending a two-year software engineering program at Holberton School in San Francisco, California where the learning model is focused on peer and self-directed learning and as such, there are no teachers or lectures at the school. 
+      <P class="biotext">I am an aspiring software engineer looking for entry level software engineering positions, apprenticeships, or internships. I am currently attending a two-year software engineering program at Holberton School in San Francisco, California where the learning model is focused on peer and self-directed learning and as such, there are no teachers or lectures at the school. 
       <BR><BR>
       My primary technologies so far are C, Python/Flask, Javascript, and MySQL, and I am eager to learn more. I have experience with data structures and algorithms, full-stack architectures, relational databases and object relational mappers, low-level programming, high-level object-oriented programming, REST APIs and web frameworks, basic web infrastructure and DevOps, and have an interest in machine learning and data science.
       <BR><BR>
@@ -117,26 +133,45 @@
 </DIV>
 <DIV id="destinations" class="container text-center profile">
   <H3>Destinations</H3>
-  <P><UL>
-		<LI>Vienna, Austria</LI>
-		<LI>Singapore</LI>
-		<LI>Barcelona, Spain</LI>
-		<LI>Santorini, Greece</LI>
-		<LI>Berlin, Germany</LI>
-		<LI>Many many many more...</LI>
-  </UL></P>
+  <!--<DIV class="row text-center">-->
+    <DIV class="place">
+	    <P><STRONG>Berlin, Germany</STRONG></P>
+	</DIV>
+	<DIV class="place">
+	    <P><STRONG>Vienna, Austria</STRONG></P>
+	</DIV>
+	<DIV class="place">
+	    <P><STRONG>Brussels, Belgium</STRONG></P>
+	</DIV>
+  <!--</DIV>-->
 </DIV>
 <DIV id="interests" class="container text-center profile">
   <H3>Interests</H3>
-  <P>I love learning foreign languages and playing music. I have been playing the violin since I was 5 and the piano since I was 8. In terms of languages, currently, I speak French, Spanish, Cantonese, English, and can read Russian and Arabic. Someday, I want to speak fluently French, German, Spanish, Chinese, Japanese, Italian, Portuguese, Russian, Arabic, and Turkish.</P>
+  <DIV id="internal_text" class="container text-center description">
+    <P class="biotext">I love learning foreign languages and playing music. I have been playing the violin since I was 5 and the piano since I was 8. In terms of languages, currently, I speak French, Spanish, Cantonese, English, and can read Russian and Arabic. Someday, I want to speak fluently French, German, Spanish, Chinese, Japanese, Italian, Portuguese, Russian, Arabic, and Turkish.</P>
+  </DIV>
 </DIV>
 <DIV id="languages" class="container text-center profile">
   <H3>Languages</H3>
-  <P>These are the languages I speak...</P>
+  <DIV class="language">
+	    <DIV><STRONG>French</STRONG></DIV>
+	</DIV>
+	<DIV class="language">
+	    <DIV><STRONG>Spanish</STRONG></DIV>
+	</DIV>
+	<DIV class="language">
+	    <DIV><STRONG>German</STRONG></DIV>
+	</DIV>
+	<DIV class="language">
+	    <DIV><STRONG>Cantonese</STRONG></DIV>
+	</DIV>
+	<DIV class="language">
+	    <DIV><STRONG>Russian</STRONG></DIV>
+	</DIV>
 </DIV>
 <DIV id="contact" class="container text-center profile">
   <H3>Contact Info</H3>
-  <P>I can be reached here...</P>
+  <P class="biotext">I can be reached here...</P>
 </DIV>
     <SCRIPT src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></SCRIPT>
     <SCRIPT src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></SCRIPT>
