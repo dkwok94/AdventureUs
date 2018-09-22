@@ -45,51 +45,6 @@
 	.navbar-default {
 	  background-color: #0E1C36;
 	}
-	.trips {
-	  background-color: #000022;
-	  border-radius: 20px;
-	  border-style: solid;
-	  border-color: #ffffff;
-	  border-width: 1.5px;
-	  margin-top: 20px;
-	  margin-bottom: 20px;
-	  color: #ffffff;
-	  opacity: 0.95;
-	  padding: 20px;
-	  width: 500px;
-	  float:left;
-	}
-	.activetrip {
-	  width: 455px;
-	  margin-left: 0px;
-	  margin-right: 0px;
-	  background-color: #006494;
-	  border-radius: 10px;
-	  height: 50px;
-	  margin-bottom: 10px;
-	}
-	.activetrip:hover {
-	  background-color: #dc201a;
-	}
-	.tripinfo {
-	  margin: 0px;
-	  padding-top: 3px;
-	  font-size: 18px;
-	}
-	.tripdate {
-	  margin: 0px;
-	  padding-top: 3px;
-	  font-size: 12px;
-	}
-	.column {
-	  float: right;
-	}
-	.column1 {
-	  margin-right: 120px;
-	}
-	.column2 {
-	  margin-right: 30px;
-	}
 	.profile {
 	  background-color: #000022;
 	  border-radius: 20px;
@@ -142,9 +97,6 @@
       height: 25%;
       opacity: 1.0;
     }
-	.page {
-	  float: left;
-	}
 	::placeholder {
 	  color: #ffffff;
 	  opacity: 1;
@@ -195,7 +147,7 @@
 	  opacity: 1;
 	}
 	.modal-body {
-	  background-color: #1F487E;
+	  background-color: #52528C;
 	  padding: 40px 50px;
 	}
 	.modal-footer {
@@ -212,6 +164,7 @@
 	}
   </STYLE>
 </HEAD>
+
 <BODY>
 <HEADER>
 <NAV class="navbar navbar-default navbar-fixed-top">
@@ -296,79 +249,7 @@
     </DIV>
   </DIV>
 </DIV>
-<DIV class="column column1">
-  <DIV id="trips" class="container text-center trips">
-	<H2>Active Adventures</H2>
-	<DIV id="internal_text" class="activetrip">
-		<P class="tripinfo"><STRONG>Vienna, Austria</STRONG></P>
-		<P class="tripdate">01/17/18 - 01/31/18</P>
-	</DIV>
-	<DIV id="internal_text" class="activetrip">
-		<P class="tripinfo"><STRONG>Buenos Aires, Argentina</STRONG></P>
-		<P class="tripdate">02/17/18 - 03/31/18</P>
-	</DIV>
-	<DIV id="internal_text" class="activetrip">
-		<P class="tripinfo"><STRONG>Beirut, Lebanon</STRONG></P>
-		<P class="tripdate">05/10/18 - 05/28/18</P>
-	</DIV>
-  </DIV>
-</DIV>
-<DIV class="column column2">
-  <DIV id="bio" class="container text-center profile">
-	<IMG src="../images/users/derek.jpg" class="img-circle person" alt="Derek">
-	<H2>Derek Kwok</H2>
-	<BUTTON type="button" class="btn btn-danger login">Add Friend</BUTTON>
-	<BUTTON type="button" class="btn btn-danger login">Edit Profile</BUTTON>
-    <DIV id="internal_text" class="container text-center description">
-      <P class="biotext">I am an aspiring software engineer looking for entry level software engineering positions, apprenticeships, or internships. I am currently attending a two-year software engineering program at Holberton School in San Francisco, California where the learning model is focused on peer and self-directed learning and as such, there are no teachers or lectures at the school. 
-      <BR><BR>
-      My primary technologies so far are C, Python/Flask, Javascript, and MySQL, and I am eager to learn more. I have experience with data structures and algorithms, full-stack architectures, relational databases and object relational mappers, low-level programming, high-level object-oriented programming, REST APIs and web frameworks, basic web infrastructure and DevOps, and have an interest in machine learning and data science.
-      <BR><BR>
-      Previously, I was a materials engineer and process engineer for almost 2 years. I am passionate about working in collaborative teams to help people all over the world by building innovative applications, analyzing, and making sense of the data around us.</P>
-    </DIV>
-</DIV>
-<DIV id="destinations" class="container text-center profile">
-  <H3>Dream Destinations</H3>
-  <!--<DIV class="row text-center">-->
-    <DIV class="place">
-	    <P><STRONG>Berlin, Germany</STRONG></P>
-	</DIV>
-	<DIV class="place">
-	    <P><STRONG>Vienna, Austria</STRONG></P>
-	</DIV>
-	<DIV class="place">
-	    <P><STRONG>Brussels, Belgium</STRONG></P>
-	</DIV>
-  <!--</DIV>-->
-</DIV>
-<DIV id="interests" class="container text-center profile">
-  <H3>Interests</H3>
-  <DIV id="internal_text" class="container text-center description">
-    <P class="biotext">I love learning foreign languages and playing music. I have been playing the violin since I was 5 and the piano since I was 8. In terms of languages, currently, I speak French, Spanish, Cantonese, English, and can read Russian and Arabic. Someday, I want to speak fluently French, German, Spanish, Chinese, Japanese, Italian, Portuguese, Russian, Arabic, and Turkish.</P>
-  </DIV>
-</DIV>
-<DIV id="languages" class="container text-center profile">
-  <H3>Languages</H3>
-  <DIV class="language">
-	    <DIV><STRONG>French</STRONG></DIV>
-	</DIV>
-	<DIV class="language">
-	    <DIV><STRONG>Spanish</STRONG></DIV>
-	</DIV>
-	<DIV class="language">
-	    <DIV><STRONG>German</STRONG></DIV>
-	</DIV>
-	<DIV class="language">
-	    <DIV><STRONG>Cantonese</STRONG></DIV>
-	</DIV>
-	<DIV class="language">
-	    <DIV><STRONG>Russian</STRONG></DIV>
-	</DIV>
-</DIV>
-<DIV id="contact" class="container text-center profile">
-  <H3>Contact Info</H3>
-  <P class="biotext">I can be reached here...</P>
-</DIV>
+<DIV id="bio" class="container text-center profile">
 </DIV>
     <SCRIPT src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></SCRIPT>
     <!--<SCRIPT src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></SCRIPT>
