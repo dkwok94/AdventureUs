@@ -9,9 +9,17 @@
   <LINK href='https://fonts.googleapis.com/css?family=Kalam' rel='stylesheet'>
   <SCRIPT src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></SCRIPT>
   <SCRIPT src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></SCRIPT>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
   <STYLE>
 	body {
 	  padding-top: 52px;
+	  background-color: #7C9EB2;
+	}
+	
+	h2, h3 {
+	  font-family: Kalam;
 	}
     .nav>li {
 	  position: relative;
@@ -19,6 +27,7 @@
 	  padding: 15px 15px;
 	  background-color: #0E1C36;
 	  color: #ffffff;
+	  font-family: Kalam;
 	}
 	.nav>li:hover {
 	  color: #006494;
@@ -31,12 +40,14 @@
 	  border-radius: 20px;
 	  background-color: #006494;
 	  border-color: #006494;
+	  font-family: Kalam;
 	}
 	.navbar-default {
 	  background-color: #0E1C36;
 	}
+	
 	.profile {
-	  background-color: #372554;
+	  background-color: #000022;
 	  border-radius: 20px;
 	  border-style: solid;
 	  border-color: #ffffff;
@@ -49,7 +60,7 @@
 	  width: 750px;
 	}
 	.description {
-	  background-color: #52528C;
+	  background-color: #001242;
 	  border-radius: 10px;
 	  width: 700px;
 	  margin-top: 15px;
@@ -64,7 +75,7 @@
 	  padding-bottom: 5px;
 	}
 	.place>p {
-	margin: 0px;
+	  margin: 0px;
 	}
 	.language {
 	width: 100px;
@@ -80,9 +91,6 @@
 	.biotext {
 	  padding: 20px;
 	}
-	body {
-	  background-color: #7C9EB2;
-    }
     .person {
       border: 3px solid;
 	  border-color: #52528C;
@@ -90,6 +98,71 @@
       height: 25%;
       opacity: 1.0;
     }
+	::placeholder {
+	  color: #ffffff;
+	  opacity: 1;
+	}
+	input[type=text], select, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: vertical;
+	  background-color: #001242;
+	  color: #ffffff;
+    }
+    label {
+      padding: 12px 12px 12px 0;
+      display: inline-block;
+	  color: #ffffff;
+	  font-size: 14px;
+	  text-shadow: 1px 1px 1px #000000;
+	  font-weight: normal;
+    } 
+	.col-25 {
+      float: left;
+      width: 25%;
+      margin-top: 6px;
+    }
+    .col-75 {
+      float: left;
+      width: 75%;
+      margin-top: 6px;
+    }
+	.modal-header {
+      background-color: #001242;
+      color: #ffffff;
+      text-align: center;
+      font-size: 30px;
+	  font-family: Kalam;
+    }
+	.close {
+	  font-family: Kalam;
+	  font-size: 40px;
+	  color: #006494;
+	  opacity: 1;
+	  text-shadow: 1px 1px 1px #000000;
+	}
+	.close:hover {
+	  color: #dc201a;
+	  opacity: 1;
+	}
+	.modal-body {
+	  background-color: #52528C;
+	  padding: 40px 50px;
+	}
+	.modal-footer {
+	  background-color: #001242;
+	}
+    .modal-header {
+      padding: 40px 50px;
+    }
+	.modal-title {
+	  display: inline;
+	}
+	.cancelBtn {
+	  color: #ffffff;
+	}
   </STYLE>
 </HEAD>
 
@@ -112,12 +185,71 @@
         <LI>SEARCH</LI>
         <LI>ADVENTURES</LI>
         <LI>FRIENDS</LI>
-		<LI><BUTTON type="button" class="btn btn-danger login">HOST ADVENTURE</BUTTON></LI>
+		<LI><BUTTON type="button" data-toggle="modal" data-target="#createTrip" class="btn btn-danger">HOST ADVENTURE</BUTTON>
+		</LI>
       </UL>
     </DIV>
   </DIV>
 </NAV>
 </HEADER>
+<!-- Modal -->
+<div class="modal fade" id="createTrip" tabindex="-1" role="dialog" aria-labelledby="Host Adventure" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <H2 class="modal-title" id="where">Where are you going?</H2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</BUTTON>
+      </div>
+      <div class="modal-body">
+		<FORM class="trip">
+			<div class="row">
+				<div class="col-25">
+					<label for="fname">City</label>
+				</div>
+				<div class="col-75">
+					<input type="text" id="city" name="city_in_country" placeholder="What city are you going to?">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-25">
+					<label for="country">Country</label>
+				</div>
+				<div class="col-75">
+					<select id="country" name="country">
+						<option value="australia">Australia</option>
+						<option value="canada">Canada</option>
+						<option value="usa">USA</option>
+					</select>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-25">
+					<label for="dates">Dates</label>
+				</div>
+				<div class="col-75">
+					<input type="text" id="dates" name="dates" placeholder="Between what dates are you going?">
+					<SCRIPT>
+						$('input[name="dates"]').daterangepicker();
+					</SCRIPT>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-25">
+					<label for="description">Trip Description</label>
+				</div>
+				<div class="col-75">
+					<textarea id="description" name="description" placeholder="What are you doing?" style="height:200px"></textarea>
+				</div>
+			</div>
+		</FORM>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</button>
+        <button type="button" class="btn btn-danger">CREATE TRIP</button>
+      </div>
+    </div>
+  </div>
+</div>
 <DIV id="bio" class="container text-center profile">
   <IMG src="../images/users/derek.jpg" class="img-circle person" alt="Derek">
   <H2>Derek Kwok</H2>
@@ -174,7 +306,7 @@
   <P class="biotext">I can be reached here...</P>
 </DIV>
     <SCRIPT src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></SCRIPT>
-    <SCRIPT src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></SCRIPT>
-  
+    <!--<SCRIPT src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></SCRIPT>
+	-->
 </BODY>
 </HTML>
