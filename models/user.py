@@ -10,7 +10,8 @@ class User(BaseModel):
     '''
     email = ""
     password = ""
-    name = ""
+    first_name = ""
+    last_name = ""
     profile_pic = ""
     bio = ""
     destinations = []
