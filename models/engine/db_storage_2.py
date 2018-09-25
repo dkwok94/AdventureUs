@@ -40,11 +40,10 @@ class DBStorage:
         new_dict = {}
         results = []
         if cls is not None:
-            '''Set the database collection to query'''
+            # Set the database collection to query
             self.new(cls)
 
-            '''Queries the database collection for __class__ equivalency
-               If there are matches, it loops and appends to results array'''
+            # Queries the database collection for __class__ equivalency. If there are matches, it loops and appends to results array
             for dic in self.__collection.find({"__class__": cls.__name__}):
                 results.append(models.classes[cls.__name__](**dic))
             for row in results:
@@ -53,21 +52,20 @@ class DBStorage:
         else:
             for key, value in models.classes.items():
                 try:
-                    '''Sets the database collection to query'''
+                    # Sets the database collection to query
                     self.new(value)
 
-                    '''If the query returns something, the class is appended
-                       to an array'''
+                    # If the query returns something, the class is appended to an array
                     if self.__collection.find_one({"__class__": key}):
                         to_query.append(models.classes[key])
                 except BaseException:
                     continue
+
             for classes in to_query:
-                '''Set the database collection to query'''
+                # Set the database collection to query
                 self.new(classes)
 
-                '''For every object with the classname associated with the collection
-                   append to the results array'''
+                # For every object with the classname associated with the collection, append to the results array
                 for dic in self.__collection.find({"__class__": classes.__name__}):
                     results.append(models.classes[classes.__name__](**dic))
                 for row in results:
@@ -77,7 +75,7 @@ class DBStorage:
 
     def new(self, obj):
         '''
-            Sets the MongoDB collection to the corresponding object
+            Sets the MongoDB collection
 
             Parameters:
                 obj (object): the object to refer to for database table/collection
@@ -86,9 +84,16 @@ class DBStorage:
 
     def save(self, obj):
         '''
-            Saves an object to the JSON database
+            Saves an object to MongoDB or updates it if it exists
         '''
-        self.__collection.insert_one(obj.to_dict())
+        self.new(obj)
+
+        # Checks if the MongoDB _id is present: if not, the object is not in the database
+        if hasattr(obj, "_id"):
+            self.__collection.update_one({"id": obj.id}, {"$set": obj.to_dict()})
+        
+        else:
+            self.__collection.insert_one(obj.to_dict())
 
     def delete(self, obj=None):
         '''
@@ -97,13 +102,10 @@ class DBStorage:
             Parameters:
                 obj (object): the object to delete
         '''
+        self.new(obj)
+        self.__collection.delete_one({"id": obj.id}) 
 
     def reload(self):
         '''
             Restarts the database engine session
-        '''
-
-    def close(self):
-        '''
-            Closes the current session and destroys it
         '''
