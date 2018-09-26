@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<HTML lang="en">
+<HEAD>
+  	<TITLE>AdventureUs</TITLE>
+  	<META charset="utf-8">
+  	<META name="viewport" content="width=device-width, initial-scale=1">
+  	<LINK rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<LINK href='https://fonts.googleapis.com/css?family=Dekko' rel='stylesheet'>
+  	<LINK href='https://fonts.googleapis.com/css?family=Kalam' rel='stylesheet'>
+  	<SCRIPT src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></SCRIPT>
+  	<SCRIPT src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></SCRIPT>
+  	<SCRIPT src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></SCRIPT>
+	<SCRIPT src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></SCRIPT>  
+  	<SCRIPT type="text/javascript">
+    	$(document).ready(function () {
+      		let imgs = ['joshua-sortino-498896-unsplash.jpg', 'theodor-lundqvist-438530-unsplash.jpg', 'cristian-moscoso-1924-unsplash.jpg', 'nathan-dumlao-576639-unsplash.jpg', 'anthony-delanoix-575672-unsplash.jpg', 'karim-manjra-702188-unsplash.jpg', 'jay-dantinne-499958-unsplash.jpg', 'jeremy-bishop-346050-unsplash.jpg', 'robert-tudor-704838-unsplash.jpg', 'john-towner-126926-unsplash.jpg', 'bady-qb-751603-unsplash.jpg', 'caleb-miller-738108-unsplash.jpg', 'christopher-czermak-705859-unsplash.jpg', 'jonathan-gallegos-727409-unsplash.jpg', 'justin-lane-753659-unsplash.jpg', 'michael-liao-725983-unsplash.jpg', 'raphael-nogueira-559166-unsplash.jpg', 'robin-noguier-572033-unsplash.jpg', 'sorasak-252182-unsplash.jpg', 'usukhbayar-gankhuyag-726907-unsplash.jpg'];
+	  	$(function () {
+	      		let i = 0;
+		  	setInterval(function () {
+		      		i++;
+			  	if (i == imgs.length) {
+			      		i = 0;
+			  	}
+			      	$('body').css('background-image', 'url(../static/images/backgrounds/' + imgs[i] + ')');
+		  	}, 5000);
+	  	});
+	});
+  	</SCRIPT>
+  	<STYLE>
+  	body {
+		background-image: url('../static/images/backgrounds/sorasak-252182-unsplash.jpg');
+	 	background-repeat: no-repeat;
+	  	background-attachment: fixed;
+	  	background-position: center;
+	  	background-size: cover;
+	  	opacity: 1.0;
+      		transition: background 4s cubic-bezier(0.4, 0, 1, 1);
+  	}
+  	.jumbotron {
+	  	border-radius: 30px;
+	  	padding: 48px;
+      		background-color: #0E1C36;
+      		color: #ffffff;
+	  	opacity: 0.85;
+      		position: fixed;
+      		top: 50%;
+      		left: 50%;
+      		transform: translate(-50%, -50%);
+  	}
+
+  	.login {
+      		border-radius: 5px;
+	  	margin: 5px;
+  	}
+  	.btn {
+	  	border-color: #006494;
+      		background-color: #006494;
+  	}
+  	#confirm {
+      		visibility: hidden;
+  	}
+  	.adventureus {
+      		font-family: Kalam;
+  	}
+	.error {
+		font-family: Dekko;
+		font-size: 16px;
+	}
+  	</STYLE>
+</HEAD>
+<BODY>
+	<DIV class="jumbotron text-center">
+		<H2 class="welcome">Welcome to</H2>
+		<H1 class="adventureus">AdventureUs!</H1> 
+		<P>Are you ready for your next adventure?</P>
+		<H3>Find travel buddies today!</H3>
+		<FORM class="form-inline" action="" method="post" novalidate>
+			{{ form.hidden_tag() }}
+			<DIV class="input">
+        			{{ form.username(class="form-control login", size=50, placeholder="Username") }}
+				{% for error in form.username.errors %}
+				<SPAN class="error" style="color: red;">[{{ error }}]</SPAN>
+				{% endfor %}
+      			</DIV>
+      			<DIV class="input">
+		  		{{ form.password(class="form-control login", size=50, placeholder="Password") }}
+				{% for error in form.password.errors %}
+				<SPAN class="error" style="color: red;">[{{ error }}]</SPAN>
+				{% endfor %}
+      			</DIV>
+			<HR>
+      			{% with messages = get_flashed_messages() %}
+				{% if messages %}
+				<UL>
+					{% for message in messages %}
+					<LI>{{ message }}</LI>
+					{% endfor %}
+				</UL>
+				{% endif %}
+			{% endwith %}
+			<DIV class="login_buttons">
+				{{ form.submit(class="btn btn-danger signup") }}
+			</DIV>
+    		</FORM>
+  	</DIV>
+</BODY>
+</HTML>

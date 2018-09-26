@@ -4,8 +4,10 @@
 '''
 from models.base_model import BaseModel
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import UserMixin
 
-class User(BaseModel):
+
+class User(UserMixin, BaseModel):
     '''
         Defines the user class which inherits from BaseModel
     '''

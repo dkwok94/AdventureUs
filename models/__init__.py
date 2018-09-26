@@ -18,4 +18,3 @@ classes = {"BaseModel": BaseModel, "Country": Country,
            "Notification": Notification, "Continent": Continent}
 
 storage = DBStorage()
-storage.reload()

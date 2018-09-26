@@ -1,0 +1,3 @@
+List of bugs:
+
+1. The login page background image is supposed to transition in and out smoothly, but it flickers inconsistently. Sometimes it flickers and sometimes it does not.

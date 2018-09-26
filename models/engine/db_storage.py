@@ -6,11 +6,6 @@ import pymongo
 from pymongo import MongoClient
 from models.base_model import BaseModel
 import models
-from models.city import City
-from models.country import Country
-from models.trip import Trip
-from models.user import User
-from models.notification import Notification
 
 
 class DBStorage:
@@ -135,6 +130,19 @@ class DBStorage:
         if obj is None:
             return None
         return models.classes[cls](**obj)
+
+    def get_user(self, username):
+        '''
+            Gets a single instance of a user based on username
+
+            Parameters:
+                username (string): the username to pull from the database
+        '''
+        self.new(models.User)
+        obj = self.__collection.find_one({"username": username})
+        if obj is None:
+            return None
+        return models.User(**obj)
 
     def count(self, cls=None):
         '''

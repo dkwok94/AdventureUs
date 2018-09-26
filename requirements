@@ -1,0 +1,5 @@
+MongoDB
+pymongo
+flask
+flask-wtf
+flask-login
