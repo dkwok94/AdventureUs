@@ -11,7 +11,7 @@ from models.user import User
 from models.notification import Notification
 from models.continent import Continent
 from os import getenv
-from models.engine.db_storage_2 import DBStorage
+from models.engine.db_storage import DBStorage
 
 classes = {"BaseModel": BaseModel, "Country": Country,
            "City": City, "Trip": Trip, "User": User,

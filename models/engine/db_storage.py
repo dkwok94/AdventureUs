@@ -2,19 +2,15 @@
 '''
 DBStorage schema using SQLAlchemy and MySQL
 '''
-import sqlalchemy
-from sqlalchemy import create_engine
-from os import getenv
-from models.base_model import BaseModel, Base
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.orm import scoped_session
-from models.amenity import Amenity
-from models.city import City
-from models.place import Place
-from models.review import Review
-from models.state import State
-from models.user import User
+import pymongo
+from pymongo import MongoClient
+from models.base_model import BaseModel
 import models
+from models.city import City
+from models.country import Country
+from models.trip import Trip
+from models.user import User
+from models.notification import Notification
 
 
 class DBStorage:
@@ -22,23 +18,14 @@ class DBStorage:
     Main database storage class
     '''
 
-    __engine = None
-    __session = None
+    __collection = None
+    __client = None
 
     def __init__(self):
         '''
             Instantiation of a database storage class
         '''
-        user = getenv('HBNB_MYSQL_USER')
-        password = getenv('HBNB_MYSQL_PWD')
-        host = getenv('HBNB_MYSQL_HOST')
-        database = getenv('HBNB_MYSQL_DB')
-
-        self.__engine = create_engine(
-            'mysql+mysqldb://{}:{}@{}/{}'.
-            format(user, password, host, database), pool_pre_ping=True)
-        if getenv('HBNB_ENV') == 'test':
-            Base.metadata.drop_all(self.__engine)
+        self.__client = MongoClient('localhost', 27017)
 
     def all(self, cls=None):
         '''
@@ -52,20 +39,40 @@ class DBStorage:
         '''
         to_query = []
         new_dict = {}
+        results = []
         if cls is not None:
-            results = self.__session.query(eval(cls.__name__)).all()
+            # Set the database collection to query
+            self.new(cls)
+
+            # Queries the database collection for __class__ equivalency.
+            # If there are matches, it loops and appends to results array.
+            for dic in self.__collection.find({"__class__": cls.__name__}):
+                results.append(models.classes[cls.__name__](**dic))
             for row in results:
                 key = row.__class__.__name__ + '.' + row.id
                 new_dict[key] = row
         else:
             for key, value in models.classes.items():
                 try:
-                    self.__session.query(models.classes[key]).all()
-                    to_query.append(models.classes[key])
+                    # Sets the database collection to query
+                    self.new(value)
+
+                    # If the query returns something, the class is
+                    # appended to an array
+                    if self.__collection.find_one({"__class__": key}):
+                        to_query.append(models.classes[key])
                 except BaseException:
                     continue
+
             for classes in to_query:
-                results = self.__session.query(classes).all()
+                # Set the database collection to query
+                self.new(classes)
+
+                # For every object with the classname associated with the
+                # collection, append to the results array
+                for dic in self.__collection.find(
+                        {"__class__": classes.__name__}):
+                    results.append(models.classes[classes.__name__](**dic))
                 for row in results:
                     key = row.__class__.__name__ + '.' + row.id
                     new_dict[key] = row
@@ -73,18 +80,30 @@ class DBStorage:
 
     def new(self, obj):
         '''
-            Saves an object to the current session object
+            Sets the MongoDB collection
 
             Parameters:
-                obj (object): the object to save in the session
+                obj (object): the object to refer to for database
+                table/collection
         '''
-        self.__session.add(obj)
+        self.__collection = eval("self._DBStorage__client.AdventureUs.{}"
+                                 .format(obj.collection), {"__builtins__": {}},
+                                 {'self': self})
 
-    def save(self):
+    def save(self, obj):
         '''
-            Saves all changes to current session to the database
+            Saves an object to MongoDB or updates it if it exists
         '''
-        self.__session.commit()
+        self.new(obj)
+
+        # Checks if the MongoDB _id is present:
+        # if not, the object is not in the database
+        if hasattr(obj, "_id"):
+            self.__collection.update_one({"id": obj.id},
+                                         {"$set": obj.to_dict()})
+
+        else:
+            self.__collection.insert_one(obj.to_dict())
 
     def delete(self, obj=None):
         '''
@@ -93,21 +112,42 @@ class DBStorage:
             Parameters:
                 obj (object): the object to delete
         '''
-        if obj is not None:
-            self.__session.delete(obj)
+        self.new(obj)
+        self.__collection.delete_one({"id": obj.id})
 
     def reload(self):
         '''
             Restarts the database engine session
         '''
-        Base.metadata.create_all(self.__engine)
-        session_factory = sessionmaker(
-            bind=self.__engine, expire_on_commit=False)
-        Session = scoped_session(session_factory)
-        self.__session = Session
 
-    def close(self):
+    def get(self, cls, id):
         '''
-            Closes the current session and destroys it
+            Gets a single instance of a particular object based on id and class
+
+            Parameters:
+                cls (string): the class of the object to get
+                id (string): the id of the object to get
         '''
-        self.__session.remove()
+        if cls not in models.classes.keys():
+            return None
+        self.new(models.classes[cls])
+        obj = self.__collection.find_one({"id": id})
+        if obj is None:
+            return None
+        return models.classes[cls](**obj)
+
+    def count(self, cls=None):
+        '''
+            Counts the number of a specific class in storage or all objects
+            if cls variable is None
+
+            Parameters:
+                cls (string): the class of the objects to count
+        '''
+        count_dict = {}
+        if cls is None:
+            count_dict = self.all()
+        else:
+            if cls in models.classes.keys():
+                count_dict = self.all(models.classes[cls])
+        return len(count_dict)
