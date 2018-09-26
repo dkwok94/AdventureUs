@@ -66,8 +66,6 @@ class BaseModel:
             Return dictionary representation of BaseModel class.
         '''
         cp_dct = dict(self.__dict__)
-        if '_sa_instance_state' in cp_dct:
-            del cp_dct['_sa_instance_state']
         cp_dct['__class__'] = self.__class__.__name__
 
         # Converts a datetime object into a string of a specific template
