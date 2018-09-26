@@ -4,6 +4,7 @@
 '''
 from models.base_model import BaseModel
 
+
 class Continent(BaseModel):
     '''
         Defines the continent class which inherits from BaseModel

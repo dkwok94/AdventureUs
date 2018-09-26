@@ -194,8 +194,6 @@ class HBNBCommand(cmd.Cmd):
             Counts/retrieves the number of instances.
         '''
         obj_list = []
-        storage = FileStorage()
-        storage.reload()
         objects = storage.all()
         try:
             if len(args) != 0:

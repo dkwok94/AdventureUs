@@ -4,6 +4,7 @@
 '''
 from models.base_model import BaseModel
 
+
 class Notification(BaseModel):
     '''
         Defines the notification class which inherits from BaseModel

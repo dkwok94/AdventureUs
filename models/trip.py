@@ -4,6 +4,7 @@
 '''
 from models.base_model import BaseModel
 
+
 class Trip(BaseModel):
     '''
         Defines the trip class which inherits from BaseModel
