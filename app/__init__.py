@@ -11,6 +11,7 @@ from models import storage
 application = Flask(__name__)
 application.config.from_object(Config)
 login = LoginManager(application)
+login.login_view = 'login'
 
 import app.views
 
