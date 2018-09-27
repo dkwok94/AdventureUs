@@ -20,55 +20,39 @@
 </DIV>
 <DIV class="column column2">
   <DIV id="bio" class="container text-center profile">
-	<IMG src="../static/images/users/derek.jpg" class="img-circle profile_pic" alt="Derek">
-	<H2>Derek Kwok</H2>
+	  <IMG src="{{ current_user.profile_pic }}" class="img-circle profile_pic" alt="profilepicture">
+	<H2>{{ current_user.first_name }} 
+		{% if current_user.last_name %}
+			{{ current_user.last_name }}
+		{% endif %}</H2>
 	<BUTTON type="button" class="btn btn-danger login">Add Friend</BUTTON>
 	<BUTTON type="button" class="btn btn-danger login">Edit Profile</BUTTON>
     <DIV id="internal_text" class="container text-center description">
-      <P class="biotext">I am an aspiring software engineer looking for entry level software engineering positions, apprenticeships, or internships. I am currently attending a two-year software engineering program at Holberton School in San Francisco, California where the learning model is focused on peer and self-directed learning and as such, there are no teachers or lectures at the school. 
-      <BR><BR>
-      My primary technologies so far are C, Python/Flask, Javascript, and MySQL, and I am eager to learn more. I have experience with data structures and algorithms, full-stack architectures, relational databases and object relational mappers, low-level programming, high-level object-oriented programming, REST APIs and web frameworks, basic web infrastructure and DevOps, and have an interest in machine learning and data science.
-      <BR><BR>
-      Previously, I was a materials engineer and process engineer for almost 2 years. I am passionate about working in collaborative teams to help people all over the world by building innovative applications, analyzing, and making sense of the data around us.</P>
+	    <P class="biotext">{{ current_user.bio }}</P>
     </DIV>
 </DIV>
 <DIV id="destinations" class="container text-center profile">
   <H3>Dream Destinations</H3>
   <!--<DIV class="row text-center">-->
-    <DIV class="place">
-	    <P><STRONG>Berlin, Germany</STRONG></P>
+  	{% for dest in current_user.destinations %}
+    	<DIV class="place">
+		<P><STRONG>{{ dest['city'] }}, {{ dest['country'] }}</STRONG></P>
 	</DIV>
-	<DIV class="place">
-	    <P><STRONG>Vienna, Austria</STRONG></P>
-	</DIV>
-	<DIV class="place">
-	    <P><STRONG>Brussels, Belgium</STRONG></P>
-	</DIV>
-  <!--</DIV>-->
+	{% endfor %}
 </DIV>
 <DIV id="interests" class="container text-center profile">
   <H3>Interests</H3>
   <DIV id="internal_text" class="container text-center description">
-    <P class="biotext">I love learning foreign languages and playing music. I have been playing the violin since I was 5 and the piano since I was 8. In terms of languages, currently, I speak French, Spanish, Cantonese, English, and can read Russian and Arabic. Someday, I want to speak fluently French, German, Spanish, Chinese, Japanese, Italian, Portuguese, Russian, Arabic, and Turkish.</P>
+	  <P class="biotext">{{ current_user.interests }}</P>
   </DIV>
 </DIV>
 <DIV id="languages" class="container text-center profile">
   <H3>Languages</H3>
-  <DIV class="language">
-	    <DIV><STRONG>French</STRONG></DIV>
+  	{% for lang in current_user.languages %}
+  	<DIV class="language">
+		<DIV><STRONG>{{ lang }}</STRONG></DIV>
 	</DIV>
-	<DIV class="language">
-	    <DIV><STRONG>Spanish</STRONG></DIV>
-	</DIV>
-	<DIV class="language">
-	    <DIV><STRONG>German</STRONG></DIV>
-	</DIV>
-	<DIV class="language">
-	    <DIV><STRONG>Cantonese</STRONG></DIV>
-	</DIV>
-	<DIV class="language">
-	    <DIV><STRONG>Russian</STRONG></DIV>
-	</DIV>
+	{% endfor %}
 </DIV>
 <DIV id="contact" class="container text-center profile">
   <H3>Contact Info</H3>
