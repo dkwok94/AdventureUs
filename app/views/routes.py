@@ -6,9 +6,10 @@ import models
 from models import storage
 from app import application
 from flask import render_template, flash, redirect, url_for, request
-from app.forms import LoginForm
+from app.forms import LoginForm, CreateTrip
 from flask_login import current_user, login_user, logout_user, login_required
 from models.user import User
+
 
 @application.route('/', methods=['GET', 'POST'])
 @application.route('/login', methods=['GET', 'POST'])
@@ -30,7 +31,18 @@ def logout():
     logout_user()
     return redirect(url_for('login'))
 
-@application.route('/profile')
+@application.route('/profile', methods=["GET", "POST"])
 @login_required
 def display_profile():
-    return render_template('profile.html')
+    tripform = CreateTrip(request.form)
+    if request.method == "POST" and tripform.validate_on_submit():
+        flash('Form submitted!')
+    return render_template('profile.html', tripform=tripform)
+
+@application.route('/adventures')
+@login_required
+def display_adventures():
+    tripform = CreateTrip(request.form)
+    if request.method == "POST" and tripform.validate_on_submit():
+        flash('Form submitted!')
+    return render_template('adventures.html', tripform=tripform)

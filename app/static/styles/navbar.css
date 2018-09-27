@@ -17,6 +17,14 @@ h2, h3 {
 	color: #ffffff;
 	font-family: Kalam;
 }
+.navbar-default .navbar-nav>li>a {
+	display: inline;
+	padding: 0px;
+	color: #ffffff;
+}
+.navbar-default .navbar-nav>li>a:hover {
+	color: #006494;
+}
 .logo {
 	height: 60px;
 }
@@ -28,7 +36,7 @@ h2, h3 {
 	text-decoration: none;
 	color: #ffffff;
 }
-.nav>li:hover {
+.nav>li:hover, .nav>li>a:hover {
 	color: #006494;
 }
 .navbar-brand {

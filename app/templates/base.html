@@ -37,9 +37,9 @@
     <DIV class="collapse navbar-collapse" id="myNavbar">
       <UL class="nav navbar-nav navbar-right">
         <LI>HOME</LI>
-        <LI>PROFILE</LI>
-        <LI>ADVENTURES</LI>
-        <LI>FRIENDS</LI>
+	<LI><A href="{{ url_for('display_profile') }}">PROFILE</A></LI>
+	<LI><A href="{{ url_for('display_adventures') }}">ADVENTURES</A></LI>
+	<LI><A href="{{ url_for('display_adventures') }}">FRIENDS</A></LI>
 	<LI><BUTTON type="button" data-toggle="modal" data-target="#createTrip" class="btn btn-danger">HOST ADVENTURE</BUTTON></LI>
 	<LI><BUTTON type="button" class="btn btn-danger"><A href="{{ url_for('logout') }}" class="logout">LOGOUT</A></BUTTON></LI>
       </UL>
@@ -56,13 +56,16 @@
         <BUTTON type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</BUTTON>
       </DIV>
       <DIV class="modal-body">
-		<FORM class="trip">
+		<FORM class="trip" action="" method="post" novalidate>
 			<DIV class="row">
 				<DIV class="col-25">
 					<LABEL for="fname">City</LABEL>
 				</DIV>
 				<DIV class="col-75">
-					<INPUT type="text" id="city" name="city_in_country" placeholder="What city are you going to?">
+					{{ tripform.city(id="city", placeholder="What city are you going to?") }}
+					{% for error in tripform.city.errors %}
+					<SPAN class="error" style="color: red;">[{{ error }}]</SPAN>
+					{% endfor %}
 				</DIV>
 			</DIV>
 			<DIV class="row">
@@ -70,11 +73,10 @@
 					<LABEL for="country">Country</LABEL>
 				</DIV>
 				<DIV class="col-75">
-					<SELECT id="country" name="country">
-						<OPTION value="australia">Australia</OPTION>
-						<OPTION value="canada">Canada</OPTION>
-						<OPTION value="usa">USA</OPTION>
-					</SELECT>
+					{{ tripform.country(id="country") }}
+					{% for error in tripform.country.errors %}
+					<SPAN class="error" style="color: red;">[{{ error }}]</SPAN>
+					{% endfor %}
 				</DIV>
 			</DIV>
 			<DIV class="row">
@@ -82,7 +84,10 @@
 					<LABEL for="dates">Dates</LABEL>
 				</DIV>
 				<DIV class="col-75">
-					<INPUT type="text" id="dates" name="dates" placeholder="Between what dates are you going?">
+					{{ tripform.dates(id="dates", placeholder="Between what dates are you going?") }}
+					{% for error in tripform.dates.errors %}
+					<SPAN class="error" style="color: red;">[{{ error }}]</SPAN>
+					{% endfor %}
 					<SCRIPT>
 						$('input[name="dates"]').daterangepicker();
 					</SCRIPT>
@@ -93,14 +98,27 @@
 					<LABEL for="description">Trip Description</LABEL>
 				</DIV>
 				<DIV class="col-75">
-					<TEXTAREA id="description" name="description" placeholder="What are you doing?" style="height:200px"></TEXTAREA>
+					{{ tripform.description(id="description", placeholder="What are you doing?", style="height:200px;") }}
+					{% for error in tripform.description.errors %}
+					<SPAN class="error" style="color: red;">[{{ error }}]</SPAN>
+					{% endfor %}
 				</DIV>
 			</DIV>
+			<HR>
+			{% with messages = get_flashed_messages() %}
+				{% if messages %}
+				<UL>
+					{% for message in messages %}
+					<LI>{{ message }}</LI>
+					{% endfor %}
+				</UL>
+				{% endif %}
+			{% endwith %}
 		</FORM>
       </DIV>
       <DIV class="modal-footer">
         <BUTTON type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</BUTTON>
-        <BUTTON type="button" class="btn btn-danger">CREATE TRIP</BUTTON>
+	{{ tripform.create(class="btn btn-danger") }}
       </DIV>
     </DIV>
   </DIV>
