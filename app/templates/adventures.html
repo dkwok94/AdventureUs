@@ -1,102 +1,6 @@
-<!DOCTYPE html>
-<HTML lang="en">
-<HEAD>
-  <TITLE>AdventureUs</TITLE>
-  <META charset="utf-8">
-  <META name="viewport" content="width=device-width, initial-scale=1">
-  <LINK rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <LINK href='https://fonts.googleapis.com/css?family=Dekko' rel='stylesheet'>
-  <LINK href='https://fonts.googleapis.com/css?family=Kalam' rel='stylesheet'>
-  <SCRIPT src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></SCRIPT>
-  <SCRIPT src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></SCRIPT>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-</HEAD>
+{% extends "base.html" %}
 
-<BODY>
-<HEADER>
-<NAV class="navbar navbar-default navbar-fixed-top">
-  <DIV class="container">
-    <DIV class="navbar-header">
-      <BUTTON type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <SPAN class="icon-bar"></SPAN>
-        <SPAN class="icon-bar"></SPAN>
-        <SPAN class="icon-bar"></SPAN> 
-      </BUTTON>
-      <IMG src="../icons/globe-icon-svg-15.jpg" class="navbar-brand logo" href="#">
-    </DIV>
-    <DIV class="collapse navbar-collapse" id="myNavbar">
-      <UL class="nav navbar-nav navbar-right">
-        <LI>HOME</LI>
-        <LI>PROFILE</LI>
-        <LI>ADVENTURES</LI>
-        <LI>FRIENDS</LI>
-		<LI><BUTTON type="button" data-toggle="modal" data-target="#createTrip" class="btn btn-danger">HOST ADVENTURE</BUTTON>
-		</LI>
-      </UL>
-    </DIV>
-  </DIV>
-</NAV>
-</HEADER>
-<!-- Modal -->
-<DIV class="modal fade" id="createTrip" tabindex="-1" role="dialog" aria-labelledby="Host Adventure" aria-hidden="true">
-  <DIV class="modal-dialog" role="document">
-    <DIV class="modal-content">
-      <DIV class="modal-header">
-        <H2 class="modal-title" id="where">Where are you going?</H2>
-        <BUTTON type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</BUTTON>
-      </DIV>
-      <DIV class="modal-body">
-		<FORM class="trip">
-			<DIV class="row">
-				<DIV class="col-25">
-					<LABEL for="fname">City</LABEL>
-				</DIV>
-				<DIV class="col-75">
-					<INPUT type="text" id="city" name="city_in_country" placeholder="What city are you going to?">
-				</DIV>
-			</DIV>
-			<DIV class="row">
-				<DIV class="col-25">
-					<LABEL for="country">Country</LABEL>
-				</DIV>
-				<DIV class="col-75">
-					<SELECT id="country" name="country">
-						<OPTION value="australia">Australia</OPTION>
-						<OPTION value="canada">Canada</OPTION>
-						<OPTION value="usa">USA</OPTION>
-					</SELECT>
-				</DIV>
-			</DIV>
-			<DIV class="row">
-				<DIV class="col-25">
-					<LABEL for="dates">Dates</LABEL>
-				</DIV>
-				<DIV class="col-75">
-					<INPUT type="text" id="dates" name="dates" placeholder="Between what dates are you going?">
-					<SCRIPT>
-						$('input[name="dates"]').daterangepicker();
-					</SCRIPT>
-				</DIV>
-			</DIV>
-			<DIV class="row">
-				<DIV class="col-25">
-					<LABEL for="description">Trip Description</LABEL>
-				</DIV>
-				<DIV class="col-75">
-					<TEXTAREA id="description" name="description" placeholder="What are you doing?" style="height:200px"></TEXTAREA>
-				</DIV>
-			</DIV>
-		</FORM>
-      </DIV>
-      <DIV class="modal-footer">
-        <BUTTON type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</BUTTON>
-        <BUTTON type="button" class="btn btn-danger">CREATE TRIP</BUTTON>
-      </DIV>
-    </DIV>
-  </DIV>
-</DIV>
+{% block content %}
 <FORM class="tripsearch">
 	<DIV class="searchtrips">
 	<INPUT type="text" class="searchbar" placeholder="Type in search term...">
@@ -157,8 +61,4 @@
     </DIV>
   </DIV>
 </DIV>
-    <SCRIPT src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></SCRIPT>
-    <!--<SCRIPT src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></SCRIPT>
-	-->
-</BODY>
-</HTML>
+{% endblock %}
