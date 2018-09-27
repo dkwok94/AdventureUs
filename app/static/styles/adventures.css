@@ -34,9 +34,9 @@ div.buddiesrow img {
 .rowperson {
 	border: 3px solid;
 	border-color: #52528C;
-    width: 20%;
-    height: 20%;
-    opacity: 1.0;
+    	width: 20%;
+    	height: 20%;
+    	opacity: 1.0;
 	margin-bottom: 20px;
 	margin-top: 20px;
 	margin-right: 20px;
@@ -55,8 +55,8 @@ div.buddiesrow img {
 	flex: 50%;
 }
 .person {
-    border: 3px solid;
+    	border: 3px solid;
 	border-color: #52528C;
 	width: 60%;
-    opacity: 1.0;
+    	opacity: 1.0;
 }
