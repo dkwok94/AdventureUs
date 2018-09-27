@@ -8,7 +8,7 @@
 	padding-top: 3px;
 	font-size: 12px;
 }
-.activetrip:hover {
+.activetrip:hover, .profileactivetrip:hover {
 	background-color: #dc201a;
 }
 .profileactivetrip {
