@@ -1,0 +1,56 @@
+.searchbar {
+	width: 500px !important;
+}
+.searchbtn {
+	border-radius: 4px;
+}
+.currenttrips {
+	background-color: #000022;
+	border-radius: 20px;
+	border-style: solid;
+	border-color: #ffffff;
+	border-width: 1.5px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	color: #ffffff;
+	opacity: 0.95;
+	padding: 20px;
+	width: 750px;
+}
+.searchtrips {
+	display: inline-flex;
+	margin-top: 20px;
+	margin-left: 480px;
+	margin-right: 480px;
+}
+div.buddiesrow {
+	overflow: auto;
+	margin-bottom: 20px;
+	white-space: nowrap;
+}
+div.buddiesrow img {
+	display: inline-block;
+}
+.rowperson {
+	border: 3px solid;
+	border-color: #52528C;
+    width: 20%;
+    height: 20%;
+    opacity: 1.0;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	margin-right: 20px;
+}
+.tripmodaltext, .modalfootertext {
+	color: #ffffff;
+}
+.modalfootertext {
+	margin: 0px;
+	width: 150px;
+}
+.inforow {
+	display: flex;
+}
+.tripcolumn {
+	flex: 50%;
+}

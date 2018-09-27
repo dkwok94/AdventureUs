@@ -1,0 +1,63 @@
+.col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+.col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+	color: #ffffff;
+	font-size: 14px;
+	text-shadow: 1px 1px 1px #000000;
+	font-weight: normal;
+}
+.close {
+	font-family: Kalam;
+	font-size: 40px;
+	color: #006494;
+	opacity: 1;
+	text-shadow: 1px 1px 1px #000000;
+}
+.close:hover {
+	color: #dc201a;
+	opacity: 1;
+}
+.modal-header {
+    background-color: #001242;
+    color: #ffffff;
+	padding: 40px 50px;
+    text-align: center;
+    font-size: 30px;
+	font-family: Kalam;
+}
+.modal-body {
+	background-color: #1F487E;
+	padding: 40px 50px;
+}
+.modal-footer {
+	background-color: #001242;
+}
+.modal-title {
+	display: inline;
+}
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+	background-color: #001242;
+	color: #ffffff;
+}
+::placeholder {
+	color: #ffffff;
+	opacity: 1;
+}
+.cancelBtn {
+	color: #ffffff;
+}

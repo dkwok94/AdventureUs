@@ -1,0 +1,13 @@
+.tripinfo {
+	margin: 0px;
+	padding-top: 3px;
+	font-size: 18px;
+}
+.tripdate {
+	margin: 0px;
+	padding-top: 3px;
+	font-size: 12px;
+}
+.activetrip:hover {
+	background-color: #dc201a;
+}

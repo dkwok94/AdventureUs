@@ -1,0 +1,71 @@
+.trips {
+	background-color: #000022;
+	border-radius: 20px;
+	border-style: solid;
+	border-color: #ffffff;
+	border-width: 1.5px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	color: #ffffff;
+	opacity: 0.95;
+	padding: 20px;
+	width: 500px;
+	float:left;
+}
+.column {
+	float: right;
+}
+.column1 {
+	margin-right: 120px;
+}
+.column2 {
+	margin-right: 30px;
+}
+.profile {
+	background-color: #000022;
+	border-radius: 20px;
+	border-style: solid;
+	border-color: #ffffff;
+	border-width: 1.5px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	color: #ffffff;
+	opacity: 0.95;
+	padding: 20px;
+	width: 750px;
+}
+.description {
+	background-color: #001242;
+	border-radius: 10px;
+	width: 700px;
+	margin-top: 15px;
+}
+.page {
+	float: left;
+}
+.language {
+	width: 100px;
+	height: 50px;
+	display: inline-block;
+	margin: 15px;
+	background: #52528C;
+	padding-top: 15px;
+	-moz-border-radius: 100px / 50px;
+	-webkit-border-radius: 100px / 50px;
+	border-radius: 100px / 50px;
+}
+.biotext {
+	padding: 20px;
+}
+.place {
+	background-color: #52528C;
+	border-radius: 3px;
+	margin: 5px;
+	width: 231px;
+	display: inline-block;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.place>p {
+	margin: 0px;
+}

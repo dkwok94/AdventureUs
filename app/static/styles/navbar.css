@@ -1,0 +1,46 @@
+body {
+	padding-top: 52px;
+	background-color: #7C9EB2;
+}
+	
+h2, h3 {
+	font-family: Kalam;
+}
+.nav>li {
+	position: relative;
+	display: block;
+	padding-right: 20px;
+	padding-left: 0px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	background-color: #0E1C36;
+	color: #ffffff;
+	font-family: Kalam;
+}
+.logo {
+	height: 60px;
+}
+.logout {
+	padding: 0px;
+	color: #ffffff;
+}
+.logout:hover {
+	text-decoration: none;
+	color: #ffffff;
+}
+.nav>li:hover {
+	color: #006494;
+}
+.navbar-brand {
+	padding: 5px 5px;
+}
+.btn {
+	padding: 0px 10px;
+	border-radius: 20px;
+	background-color: #006494;
+	border-color: #006494;
+	font-family: Kalam;
+}
+.navbar-default {
+	background-color: #0E1C36;
+}
