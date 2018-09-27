@@ -10,6 +10,7 @@ class Country(BaseModel):
         Defines the country class which inherits from BaseModel
     '''
     name = ""
+    code = ""
     cities = []
     states = []
     collection = "countries"
