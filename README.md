@@ -1,6 +1,6 @@
 # AdventureUs
 
-##Technologies Used
+## Technologies Used
 * Python
 * Flask
 * HTML
