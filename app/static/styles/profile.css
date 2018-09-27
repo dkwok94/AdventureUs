@@ -69,3 +69,10 @@
 .place>p {
 	margin: 0px;
 }
+.profile_pic {
+    border: 3px solid;
+	border-color: #52528C;
+    width: 25%;
+    height: 25%;
+    opacity: 1.0;
+}

@@ -11,3 +11,23 @@
 .activetrip:hover {
 	background-color: #dc201a;
 }
+.profileactivetrip {
+	width: 455px;
+	margin-left: 0px;
+	margin-right: 0px;
+	background-color: #006494;
+	border-radius: 10px;
+	height: 50px;
+	margin-bottom: 10px;
+}
+.activetrip {
+	width: 455px;
+	margin-left: 0px;
+	margin-right: 0px;
+	background-color: #006494;
+	border-radius: 10px;
+	height: 50px;
+	margin-bottom: 10px;
+	border-color: #006494;
+	border-style: solid;
+}

@@ -54,3 +54,9 @@ div.buddiesrow img {
 .tripcolumn {
 	flex: 50%;
 }
+.person {
+    border: 3px solid;
+	border-color: #52528C;
+	width: 60%;
+    opacity: 1.0;
+}
