@@ -1,0 +1,41 @@
+body {
+	background-image: url('../../static/images/backgrounds/sorasak-252182-unsplash.jpg');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center;
+	background-size: cover;
+	opacity: 1.0;
+      	transition: background 4s cubic-bezier(0.4, 0, 1, 1);
+}
+.jumbotron {
+  	border-radius: 30px;
+  	padding: 48px;
+	background-color: #0E1C36;
+	color: #ffffff;
+	opacity: 0.85;
+	position: fixed;
+      	top: 50%;
+      	left: 50%;
+      	transform: translate(-50%, -50%);
+}
+.login {
+	border-radius: 5px;
+  	margin: 5px;
+}
+.btn {
+  	border-color: #006494;
+	background-color: #006494;
+}
+#confirm {
+	visibility: hidden;
+}
+.adventureus {
+	font-family: Kalam;
+}
+.error {
+	font-family: Dekko;
+	font-size: 16px;
+}
+.logo {
+	height: 110px;
+}
