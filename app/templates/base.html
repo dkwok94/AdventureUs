@@ -56,7 +56,8 @@
         <BUTTON type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</BUTTON>
       </DIV>
       <DIV class="modal-body">
-		<FORM class="trip" action="" method="post" novalidate>
+	      <FORM class="trip" action="{{ url_for('create_trip') }}" method="post" novalidate>
+			{{ tripform.hidden_tag() }}
 			<DIV class="row">
 				<DIV class="col-25">
 					<LABEL for="fname">City</LABEL>
@@ -109,20 +110,35 @@
 				{% if messages %}
 				<UL>
 					{% for message in messages %}
-					<LI>{{ message }}</LI>
+					<LI style="color: white;">{{ message }}</LI>
 					{% endfor %}
 				</UL>
 				{% endif %}
 			{% endwith %}
-		</FORM>
       </DIV>
       <DIV class="modal-footer">
         <BUTTON type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</BUTTON>
-	{{ tripform.create(class="btn btn-danger") }}
+	{{ tripform.create(class="btn btn-danger create") }}
       </DIV>
+      </FORM>
     </DIV>
   </DIV>
 </DIV>
+<!--<SCRIPT>
+	$('.create').on('click', function () {
+	  $.ajax({
+url: '{{ url_for('create_trip') }}',
+data: $('.trip').serialize(),
+type: 'POST',
+success: function(html) {
+	console.log(html)
+	},
+error: function(error) {
+	console.log(error)
+}
+	});
+	  });
+</SCRIPT>-->
 {% block content %}{% endblock %}
 </BODY>
 </HTML>
