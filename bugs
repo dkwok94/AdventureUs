@@ -1,3 +1,5 @@
 List of bugs:
 
 1. The login page background image is supposed to transition in and out smoothly, but it flickers inconsistently. Sometimes it flickers and sometimes it does not.
+2. The user can literally type anything into the city field of the create trip modal
+3. When the user does not fill in all fields, the modal does not prompt the user for these inputs like it is supposed to
