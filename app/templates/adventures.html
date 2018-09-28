@@ -9,18 +9,16 @@
 </FORM>
 <DIV id="currenttrips" class="container text-center currenttrips">
 	<H3>Current Active Trips</H3>
-	<BUTTON id="internal_text" class="activetrip" data-toggle="modal" data-target="#tripInfo">
-		<P class="adventure_tripinfo"><STRONG>Vienna, Austria</STRONG></P>
-		<P class="tripdate">01/17/18 - 01/31/18</P>
-	</BUTTON>
-	<BUTTON id="internal_text" class="activetrip" data-toggle="modal" data-target="#tripInfo">
-		<P class="adventure_tripinfo"><STRONG>Buenos Aires, Argentina</STRONG></P>
-		<P class="tripdate">02/17/18 - 03/31/18</P>
-	</BUTTON>
-	<BUTTON id="internal_text" class="activetrip" data-toggle="modal" data-target="#tripInfo">
-		<P class="adventure_tripinfo"><STRONG>Beirut, Lebanon</STRONG></P>
-		<P class="tripdate">05/10/18 - 05/28/18</P>
-	</BUTTON>
+	{% if all_trips %}
+		{% for trip in all_trips.values() %}	
+			<BUTTON id="internal_text" class="activetrip" data-toggle="modal" data-target="#tripInfo">
+			<P class="adventure_tripinfo"><STRONG>{{ trip.city }}, {{ trip.country }}</STRONG></P>
+			<P class="tripdate">{{ trip.date_range }}</P>
+			</BUTTON>
+		{% endfor %}
+	{% else %}
+		<H4>There are no active trips yet!</H4>
+	{% endif %}
 </DIV>
 <!-- Modal -->
 <DIV class="modal fade" id="tripInfo" tabindex="-1" role="dialog" aria-labelledby="Host Adventure" aria-hidden="true">

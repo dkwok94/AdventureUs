@@ -52,9 +52,11 @@ def display_profile():
 @application.route('/adventures')
 @login_required
 def display_adventures():
+    all_trips = storage.all(models.Trip)
     session['url'] = url_for('display_adventures')
     tripform = CreateTrip(request.form)
-    return render_template('adventures.html', tripform=tripform)
+    return render_template('adventures.html', tripform=tripform,
+                            all_trips=all_trips)
 
 
 @application.route('/createtrip', methods=["GET", "POST"])
