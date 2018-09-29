@@ -1,6 +1,6 @@
 .tripinfo {
 	margin: 0px;
-	padding-top: 3px;
+	padding-top: 0px;
 	font-size: 18px;
 }
 .adventure_tripinfo {
@@ -24,6 +24,8 @@
 	border-radius: 10px;
 	height: 50px;
 	margin-bottom: 10px;
+	border-color: #006494;
+	border-style: solid;
 }
 .activetrip {
 	width: 455px;

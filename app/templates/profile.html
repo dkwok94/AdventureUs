@@ -6,10 +6,10 @@
 	<H2>Hosted Adventures</H2>
 	{% if hosted_trips[0] is defined %}
 		{% for trip in hosted_trips %}
-			<DIV id="internal_text" class="profileactivetrip">
+		<BUTTON id="internal_text" class="profileactivetrip" data-id="{{ trip.id }}" data-toggle="modal" data-target="#hostTripInfo">
 				<P class="tripinfo"><STRONG>{{ trip.city }}, {{ trip.country }}</STRONG></P>
 				<P class="tripdate">{{ trip.date_range }}</P>
-			</DIV>
+		</BUTTON>
 		{% endfor %}
 	{% else %}
 		<H3>No trips have been hosted yet!</H3>
@@ -19,14 +19,52 @@
 	<H2>Other Adventures</H2>
 	{% if active_trips[0] is defined %}
 		{% for trip in active_trips %}
-			<DIV id="internal_text" class="profileactivetrip">
+		<BUTTON id="internal_text" class="profileactivetrip" data-id="{{ trip.id }}" data-toggle="modal" data-target="#activeTripInfo">
 				<P class="tripinfo"><STRONG>{{ trip.city }}, {{ trip.country }}</STRONG></P>
 				<P class="tripdate">{{ trip.date_range }}</P>
-			</DIV>
+		</BUTTON>
 		{% endfor %}
 	{% else %}
 		<H3>You have not joined any trips yet!</H3>
 	{% endif %}
+  </DIV>
+</DIV>
+<!-- Modal -->
+<DIV class="modal fade" id="hostTripInfo" tabindex="-1" role="dialog" aria-labelledby="Host Adventure" aria-hidden="true">
+  <DIV class="modal-dialog" role="document">
+    <DIV class="modal-content">
+      <DIV class="modal-header trip-header">
+	      <!-- Placeholder for AJAX dynamic content -->
+      </DIV>
+      <DIV class="modal-body trip-body">
+	      <!-- Placeholder for AJAX dynamic content -->
+      </DIV>
+      <DIV class="modal-footer trip-footer">
+		<DIV class="buddies">
+			<!-- Placeholder for AJAX dynamic content -->
+		</DIV>
+        <BUTTON type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</BUTTON>
+	<BUTTON type="button" class="btn btn-danger">DELETE TRIP</BUTTON>
+      </DIV>
+    </DIV>
+  </DIV>
+</DIV>
+<!-- Modal -->
+<DIV class="modal fade" id="activeTripInfo" tabindex="-1" role="dialog" aria-labelledby="Host Adventure" aria-hidden="true">
+  <DIV class="modal-dialog" role="document">
+    <DIV class="modal-content">
+      <DIV class="modal-header trip-header">
+	      <!-- Placeholder for AJAX dynamic content -->
+      </DIV>
+      <DIV class="modal-body trip-body">
+	      <!-- Placeholder for AJAX dynamic content -->
+      </DIV>
+      <DIV class="modal-footer trip-footer">
+		<DIV class="buddies">
+		</DIV>
+        <BUTTON type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</BUTTON>
+      </DIV>
+    </DIV>
   </DIV>
 </DIV>
 <DIV class="column column2">
