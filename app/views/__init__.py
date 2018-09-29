@@ -3,3 +3,4 @@
     Initialization of routes package
 '''
 from app.views import routes
+from app.views import errors

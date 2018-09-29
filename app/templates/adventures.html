@@ -11,7 +11,7 @@
 	<H3>Current Active Trips</H3>
 	{% if all_trips %}
 		{% for trip in all_trips.values() %}	
-			<BUTTON id="internal_text" class="activetrip" data-toggle="modal" data-target="#tripInfo">
+		<BUTTON id="internal_text" id="activetrip" class="activetrip" data-id="{{ trip.id }}" data-toggle="modal" data-target="#tripInfo">
 			<P class="adventure_tripinfo"><STRONG>{{ trip.city }}, {{ trip.country }}</STRONG></P>
 			<P class="tripdate">{{ trip.date_range }}</P>
 			</BUTTON>
@@ -24,25 +24,13 @@
 <DIV class="modal fade" id="tripInfo" tabindex="-1" role="dialog" aria-labelledby="Host Adventure" aria-hidden="true">
   <DIV class="modal-dialog" role="document">
     <DIV class="modal-content">
-      <DIV class="modal-header">
-        <H2 class="modal-title" id="where">Vienna, Austria</H2>
-        <BUTTON type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</BUTTON>
+      <DIV class="modal-header trip-header">
+	      <!-- Placeholder for AJAX dynamic content -->
       </DIV>
-      <DIV class="modal-body">
-	  <DIV class="inforow">
-		<DIV class="tripcolumn">
-			<H4 class="host tripmodaltext"><STRONG>HOST</STRONG></H4>
-			<H5 class="hostname tripmodaltext">Derek Kwok</H5>
-			<IMG src="{{ current_user.profile_pic }}" class="img-circle img-responsive person" alt="Derek">
-		</DIV>
-		<DIV class="tripcolumn">
-			<H4 class="tripinformation tripmodaltext"><STRONG>TRIP INFORMATION</STRONG></H4>
-			<H4 class="daterange tripmodaltext">01/17/18 - 01/31/18</H4>
-			<P class="tripdescription tripmodaltext">We are going to Vienna, Austria. We are planning to go to Schonbrunn Palace, Hofburg, Belvedere, St. Stephen's Cathedral, the Vienna State Opera, the City Hall, and enjoy some good Austrian and German food. Please join if you are interested! 
-		</DIV>
-	  </DIV>
+      <DIV class="modal-body trip-body">
+	      <!-- Placeholder for AJAX dynamic content -->
       </DIV>
-      <DIV class="modal-footer">
+      <DIV class="modal-footer trip-footer">
 		<DIV class="buddies">
 		  <P class="others modalfootertext">Other users on this trip:</P>
 			<DIV class="buddiesrow">

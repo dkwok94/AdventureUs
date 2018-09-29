@@ -6,6 +6,7 @@ import models
 from models import storage
 from app import application
 from flask import render_template, flash, redirect, url_for, request, session
+from flask import jsonify, abort
 from app.forms import LoginForm, CreateTrip
 from flask_login import current_user, login_user, logout_user, login_required
 from models.user import User
@@ -49,9 +50,17 @@ def display_profile():
                             active_trips=active_trips)
 
 
-@application.route('/adventures')
+@application.route('/adventures', methods=["GET", "POST"])
 @login_required
 def display_adventures():
+    if request.method == "POST":
+        content = request.get_json()
+        print(content)
+        trip = storage.get("Trip", content['id'])
+        if trip:
+            return jsonify(trip.to_dict())
+        else:
+            abort(404)
     all_trips = storage.all(models.Trip)
     session['url'] = url_for('display_adventures')
     tripform = CreateTrip(request.form)
@@ -69,16 +78,15 @@ def create_trip():
                      "date_range": tripform.dates.data,
                      "description": tripform.description.data,
                      "users": [current_user.username],
-                     "host": current_user.username}
+                     "host": current_user.username,
+                     "host_pic": current_user.profile_pic,
+                     "host_firstname": current_user.first_name,
+                     "host_lastname": current_user.last_name}
         new_trip = models.Trip(**trip_dict)
         if current_user.hosted_trips:
             current_user.hosted_trips.append(new_trip.id)
         else:
             setattr(current_user, "hosted_trips", [new_trip.id])
-        if current_user.active_trips:
-            current_user.active_trips.append(new_trip.id)
-        else:
-            setattr(current_user, "active_trips", [new_trip.id])
         storage.save(current_user)
         storage.save(new_trip)
         return redirect(session['url'])
