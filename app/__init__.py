@@ -7,9 +7,11 @@ from app.config import Config
 from flask_login import LoginManager
 import models
 from models import storage
+from app.json import JSONEncoder
 
 application = Flask(__name__)
 application.config.from_object(Config)
+application.json_encoder = JSONEncoder
 login = LoginManager(application)
 login.login_view = 'login'
 
