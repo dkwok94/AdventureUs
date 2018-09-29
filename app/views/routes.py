@@ -11,7 +11,7 @@ from app.forms import LoginForm, CreateTrip
 from flask_login import current_user, login_user, logout_user, login_required
 from models.user import User
 
-
+# Login-Logout view functions
 @application.route('/', methods=['GET', 'POST'])
 @application.route('/login', methods=['GET', 'POST'])
 def login():
@@ -33,7 +33,7 @@ def logout():
     logout_user()
     return redirect(url_for('login'))
 
-
+# Display view functions
 @application.route('/profile', methods=["GET", "POST"])
 @login_required
 def display_profile():
@@ -66,6 +66,24 @@ def display_adventures():
     tripform = CreateTrip(request.form)
     return render_template('adventures.html', tripform=tripform,
                             all_trips=all_trips)
+
+@application.route('/trip_roster', methods=["GET", "POST"])
+@login_required
+def trip_roster():
+    users = []
+    if request.method == "POST":
+        content = request.get_json()
+        print(content)
+        for user in content['users']:
+            user_obj = storage.get_user(user)
+            if user_obj:
+                users.append(user_obj.to_dict_mongoid())
+            else:
+                abort(404)
+        if users:
+            return jsonify(users)
+        else:
+            abort(404)
 
 
 @application.route('/createtrip', methods=["GET", "POST"])
