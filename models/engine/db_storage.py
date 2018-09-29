@@ -95,7 +95,7 @@ class DBStorage:
         # if not, the object is not in the database
         if hasattr(obj, "_id"):
             self.__collection.update_one({"id": obj.id},
-                                         {"$set": obj.to_dict()})
+                                         {"$set": obj.to_dict_mongoid()})
 
         else:
             self.__collection.insert_one(obj.to_dict())

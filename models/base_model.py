@@ -73,3 +73,20 @@ class BaseModel:
         cp_dct['created_at'] = self.created_at.strftime("%Y-%m-%dT%H:%M:%S.%f")
 
         return (cp_dct)
+
+    def to_dict_mongoid(self):
+        '''
+            Returns dictionary representation of BaseModel class
+            taking into account the MongoDB _id attribute is not
+            allowed to change.
+        '''
+        cp_dct = dict(self.__dict__)
+        cp_dct['__class__'] = self.__class__.__name__
+
+        cp_dct['updated_at'] = self.updated_at.strftime("%Y-%m-%dT%H:%M:%S.%f")
+        cp_dct['created_at'] = self.created_at.strftime("%Y-%m-%dT%H:%M:%S.%f")
+        
+        # Excludes the _id attribute that MongoDB appends to the object
+        # to avoid update errors when saving to the database
+        del cp_dct['_id']
+        return (cp_dct)
