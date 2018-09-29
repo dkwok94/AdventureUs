@@ -1,5 +1,35 @@
-MongoDB
-pymongo
-flask
-flask-wtf
-flask-login
+# Ubuntu Operating System is assumed
+
+echo "========== Installing Node/JS =========="
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+sudo apt-get install -y nodejs
+echo "========== Completed Node/JS install =========="
+
+
+echo "========== Installing MongoDB =========="
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4
+echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/4.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.0.list
+sudo apt-get update
+sudo apt-get install -y mongodb-org
+echo "mongodb-org hold" | sudo dpkg --set-selections
+echo "mongodb-org-server hold" | sudo dpkg --set-selections
+echo "mongodb-org-shell hold" | sudo dpkg --set-selections
+echo "mongodb-org-mongos hold" | sudo dpkg --set-selections
+echo "mongodb-org-tools hold" | sudo dpkg --set-selections
+sudo service mongod start
+echo "========== Completed MongoDB installation =========="
+
+
+echo "========== Installing Python and PIP =========="
+sudo apt-get install -y build-essential checkinstall
+sudo apt-get install -y python3-dev
+sudo apt-get install -y python3-pip
+echo "========== Completed Python install =========="
+
+
+echo "========== Installing Python libraries =========="
+sudo pip3 install pymongo
+sudo pip3 install flask
+sudo pip3 install flask-wtf
+sudo pip3 install flask-login
+echo "========== Completed library installs =========="
