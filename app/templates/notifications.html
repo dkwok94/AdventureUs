@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Modal -->
+<DIV id="currenttrips" class="container text-center currenttrips">
+	<H3>Pending Requests</H3>
+	{% if sent %}
+		{% for note in sent %}	
+		<BUTTON id="internal_text" id="activetrip" class="activetrip" data-id="{{ note.id }}" data-toggle="modal" data-target="#tripInfo">
+			<P class="adventure_tripinfo"><STRONG>Request to: {{ note.recipient }}</STRONG></P>
+		</BUTTON>
+		{% endfor %}
+	{% else %}
+		<H4>You have not sent any requests</H4>
+	{% endif %}
+</DIV>
+<DIV id="currenttrips" class="container text-center currenttrips">
+	<H3>Received Requests</H3>
+	{% if received %}
+		{% for note in received %}	
+		<BUTTON id="internal_text" id="activetrip" class="activetrip" data-id="{{ note.id }}" data-toggle="modal" data-target="#tripInfo">
+			<P class="adventure_tripinfo"><STRONG>Request from: {{ note.sender }}</STRONG></P>
+		</BUTTON>
+		{% endfor %}
+	{% else %}
+		<H4>You have not received any requests</H4>
+	{% endif %}
+</DIV>
+<DIV class="modal fade" id="tripInfo" tabindex="-1" role="dialog" aria-labelledby="Host Adventure" aria-hidden="true">
+  <DIV class="modal-dialog" role="document">
+    <DIV class="modal-content">
+      <DIV class="modal-header trip-header">
+	      <!-- Placeholder for AJAX dynamic content -->
+      </DIV>
+      <DIV class="modal-body trip-body">
+	      <!-- Placeholder for AJAX dynamic content -->
+      </DIV>
+      <DIV class="modal-footer trip-footer">
+		<DIV class="buddies">
+			<!-- Placeholder for AJAX dynamic content -->
+		</DIV>
+	<BUTTON type="button" class="btn btn-danger" data-dismiss="modal">ACCEPT</BUTTON>
+        <BUTTON type="button" class="btn btn-danger join">REJECT</BUTTON>	
+      </DIV>
+    </DIV>
+  </DIV>
+</DIV>
+{% endblock %}

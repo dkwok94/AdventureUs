@@ -67,6 +67,21 @@ def display_adventures():
     return render_template('adventures.html', tripform=tripform,
                             all_trips=all_trips)
 
+@application.route('/notifications', methods=["GET"])
+@login_required
+def display_notifications():
+    sent = []
+    received = []
+    session['url'] = url_for('display_notifications')
+    tripform = CreateTrip(request.form)
+    for note in current_user.notifications['sent']:
+        sent.append(storage.get("Notification", note))
+    for note in current_user.notifications['received']:
+        received.append(storage.get("Notification", note))
+    return render_template('notifications.html', tripform=tripform, 
+                            sent=sent, received=received)
+
+
 @application.route('/trip_roster', methods=["GET", "POST"])
 @login_required
 def trip_roster():
