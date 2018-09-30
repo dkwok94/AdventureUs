@@ -110,3 +110,40 @@ def create_trip():
         return redirect(session['url'])
     else:
         return "", 204
+
+# Send Notifications
+@application.route('/send_notification/<trip_id>', methods=["POST"])
+@login_required
+def send_notification(trip_id):
+    note = models.Notification()
+    trip = storage.get("Trip", trip_id)
+    if trip:
+        trip_host = storage.get_user(trip.host)
+        if trip_host:
+
+            # Check if user is trying to join his/her own trip
+            if trip_host.username == current_user.username:
+                return jsonify({"response": "Can't request own trip..."})
+
+            # Check if user has already a sent a request for this trip
+            for notification in current_user.notifications['sent']:
+                sent = storage.get("Notification", notification)
+                if sent.trip_id == trip_id:
+                    print("Already sent")
+                    return jsonify({"response": "Request already sent..."})
+
+            # Send a request to the host that current user wants to join
+            note.sender = current_user.username
+            note.recipient = trip.host
+            note.trip_id = trip_id
+            current_user.notifications['sent'].append(note.id)
+            trip_host.notifications['received'].append(note.id)
+            storage.save(note)
+            storage.save(current_user)
+            storage.save(trip_host)
+            print("Success")
+            return jsonify({"response": "Successfully Sent!"})
+        else:
+            abort(404)
+    else:
+        abort(404)
