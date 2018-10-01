@@ -1,0 +1,79 @@
+.note-header {
+	padding: 0px;
+}
+.notification-dialog {
+	width: 22%;
+}
+.accept_reject_buttons {
+	width: 222px;
+}
+.note-person {
+	width: 60%;
+	margin: auto;
+}
+.note-close {
+	margin-right: 15px;
+	margin-top: 5px;
+}
+.note:focus,.note:active {
+	outline: none !important;
+	box-shadow: none;
+}
+.sentnotes {
+	background-color: #000022;
+  	border-radius: 20px;
+  	border-style: solid;
+  	border-color: #ffffff;
+  	border-width: 1.5px;
+  	margin-top: 20px;
+  	margin-bottom: 20px;
+  	color: #ffffff;
+  	opacity: 0.95;
+  	padding: 20px;
+  	width: 750px;
+}
+.receivednotes {
+  	background-color: #000022;
+  	border-radius: 20px;
+  	border-style: solid;
+  	border-color: #ffffff;
+  	border-width: 1.5px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	color: #ffffff;
+	opacity: 0.95;
+	padding: 20px;
+	width: 750px;
+}
+.note {
+  	width: 455px;
+	margin-left: 0px;
+	margin-right: 0px;
+	background-color: #006494;
+	border-radius: 10px;
+	height: 50px;
+	margin-bottom: 10px;
+	border-color: #006494;
+	border-style: solid;
+}	
+.note:hover {
+	background-color: #dc201a;
+}
+.sender {
+	margin: 0px;
+	padding-top: 0px;
+	font-size: 18px;
+}	
+.recipient {
+	margin: 0px;
+	padding-top: 0px;
+	font-size: 18px;
+}
+.dest_note {
+	margin: 0px;
+	padding-top: 3px;
+	font-size: 12px;
+}
+.notemodaltext {
+	color: #ffffff;
+}

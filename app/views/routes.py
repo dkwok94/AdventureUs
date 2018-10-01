@@ -151,6 +151,7 @@ def send_notification(trip_id):
             note.sender = current_user.username
             note.recipient = trip.host
             note.trip_id = trip_id
+            note.trip_info = {"country": trip.country, "city": trip.city, "date_range": trip.date_range}
             current_user.notifications['sent'].append(note.id)
             trip_host.notifications['received'].append(note.id)
             storage.save(note)

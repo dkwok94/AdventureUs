@@ -27,6 +27,10 @@
 	border-color: #006494;
 	border-style: solid;
 }
+.profileactivetrip:focus,.profileactivetrip:active {
+	outline: none !important;
+	box-shadow: none;
+}
 .activetrip {
 	width: 455px;
 	margin-left: 0px;
@@ -37,4 +41,8 @@
 	margin-bottom: 10px;
 	border-color: #006494;
 	border-style: solid;
+}
+.activetrip:focus,.activetrip:active {
+	outline: none !important;
+	box-shadow: none;
 }

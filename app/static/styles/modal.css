@@ -61,3 +61,10 @@ input[type=text], select, textarea {
 .cancelBtn {
 	color: #ffffff;
 }
+.modal-header .close {
+	margin-top: 4px;
+}
+.close:focus,.close:active {
+	outline: none !important;
+	box-shadow: none;
+}

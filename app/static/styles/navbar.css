@@ -49,6 +49,10 @@ h2, h3 {
 	border-color: #006494;
 	font-family: Kalam;
 }
+.btn:focus,.btn:active {
+	outline: none !important;
+	box-shadow: none;
+}
 .navbar-default {
 	background-color: #0E1C36;
 }
