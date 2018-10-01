@@ -64,3 +64,16 @@ $(document).ready(function () {
     });
   });
 });
+
+// Reject button action for the received notification modal
+$(document).ready(function () {
+  $('.reject').click(function () {
+    $.ajax({
+      type: 'GET',
+      url: '/notification/' + $('#received_notification_dialog').data('noteid') + '/rejected_request',
+      success: function (url) {
+        window.location.replace(url.redirect);
+      }
+    });
+  });
+});

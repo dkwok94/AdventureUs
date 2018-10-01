@@ -245,3 +245,30 @@ def accept_request(noteid, tripid):
             abort(404)
     else:
         abort(404)
+
+@application.route('/notification/<noteid>/rejected_request')
+@login_required
+def reject_request(noteid):
+    '''
+        The sequence of events that occur after the host of a trip
+        rejects another user's request to join their trip
+    '''
+    note = storage.get("Notification", noteid)
+    if note:
+        user = storage.get_user(note.sender)
+        host = storage.get_user(note.recipient)
+        if user and host:
+            print(user.notifications)
+            print(host.notifications)
+            user.notifications['rejected'].append(note.id)
+            user.notifications['sent'].remove(note.id)
+            host.notifications['received'].remove(note.id)
+            print(user.notifications)
+            print(host.notifications)
+            storage.save(user)
+            storage.save(host)
+            return jsonify(dict(redirect=url_for('display_notifications')))
+        else:
+            abort(404)
+    else:
+        abort(404)
