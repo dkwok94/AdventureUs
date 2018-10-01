@@ -9,7 +9,14 @@ class City(BaseModel):
     '''
         Define the class City which inherits from BaseModel
     '''
-    name = ""
-    country_id = ""
-    state_id = ""
     collection = "cities"
+    def __init__(self, *args, **kwargs):
+        if kwargs:
+            super().__init__(**kwargs)
+        else:
+            super().__init__()
+            self.name = ""
+            self.country_id = ""
+            self.state_id = ""
+            self.country = ""
+            self.state = ""

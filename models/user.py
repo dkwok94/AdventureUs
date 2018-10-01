@@ -11,23 +11,28 @@ class User(UserMixin, BaseModel):
     '''
         Defines the user class which inherits from BaseModel
     '''
-    username = ""
-    email = ""
-    password = ""
-    first_name = ""
-    last_name = ""
-    profile_pic = ""
-    bio = ""
-    destinations = []
-    interests = ""
-    languages = []
-    friends = []
-    images = []
-    contact_info = {}
-    hosted_trips = []
-    active_trips = []
-    notifications = {}
     collection = "users"
+    def __init__(self, *args, **kwargs):
+        if kwargs:
+            super().__init__(**kwargs)
+        else:
+            super().__init__()
+            self.username = ""
+            self.email = ""
+            self.password = ""
+            self.first_name = ""
+            self.last_name = ""
+            self.profile_pic = ""
+            self.bio = ""
+            self.destinations = []
+            self.interests = ""
+            self.languages = []
+            self.friends = []
+            self.images = []
+            self.contact_info = {}
+            self.hosted_trips = []
+            self.active_trips = []
+            self.notifications = {"sent": [], "received": [], "rejected": [], "approved": []}
 
     def set_password(self, pwd):
         self.password = generate_password_hash(pwd)

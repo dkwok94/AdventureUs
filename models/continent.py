@@ -9,6 +9,11 @@ class Continent(BaseModel):
     '''
         Defines the continent class which inherits from BaseModel
     '''
-    name = ""
-    countries = []
     collection = "continents"
+    def __init__(self, *args, **kwargs):
+        if kwargs:
+            super().__init__(**kwargs)
+        else:
+            super().__init__()
+            self.name = ""
+            self.countries = []
