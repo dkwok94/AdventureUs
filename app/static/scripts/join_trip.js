@@ -12,6 +12,7 @@ $(document).ready(function () {
       data: {},
       success: function (response) {
 	alert(response.response);
+	$('#tripInfo').modal('hide');
       },
       error: function (error) {
 	alert(error);
