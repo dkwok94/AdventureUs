@@ -211,7 +211,7 @@ def accept_request(noteid, tripid):
                 storage.save(trip)
                 storage.save(user)
                 storage.save(host)
-                return redirect(url_for('display_notifications'))
+                return jsonify(dict(redirect=url_for('display_notifications')))
             else:
                 abort(404)
         else:
