@@ -100,6 +100,25 @@ def trip_roster():
         else:
             abort(404)
 
+@application.route('/get_trip/<trip_id>', methods=["GET"])
+@login_required
+def get_trip(trip_id):
+    trip = storage.get("Trip", trip_id)
+    if trip:
+        return jsonify(trip.to_dict_mongoid())
+    else:
+        abort(404)
+
+@application.route('/get_sender/<notification_id>', methods=["GET"])
+@login_required
+def get_sender(notification_id):
+    note = storage.get("Notification", notification_id)
+    if note:
+        user = storage.get_user(note.sender)
+        if user:
+            return jsonify(user.to_dict_mongoid())
+        else:
+            abort(404)
 
 @application.route('/createtrip', methods=["GET", "POST"])
 @login_required
@@ -159,6 +178,42 @@ def send_notification(trip_id):
             storage.save(trip_host)
             print("Success")
             return jsonify({"response": "Successfully Sent!"})
+        else:
+            abort(404)
+    else:
+        abort(404)
+
+@application.route('/notification/<noteid>/accepted_request/<tripid>')
+@login_required
+def accept_request(noteid, tripid):
+    trip = storage.get("Trip", tripid)
+    if trip:
+        note = storage.get("Notification", noteid)
+        if note:
+            user = storage.get_user(note.sender)
+            host = storage.get_user(note.recipient)
+            if user and host:
+                print("Before action:")
+                print(trip.users)
+                print(user.active_trips)
+                print(user.notifications)
+                print(host.notifications)
+                trip.users.append(user.username)
+                user.active_trips.append(trip.id)
+                user.notifications['approved'].append(note.id)
+                user.notifications['sent'].remove(note.id)
+                host.notifications['received'].remove(note.id)
+                print("After action:")
+                print(trip.users)
+                print(user.active_trips)
+                print(user.notifications)
+                print(host.notifications)
+                storage.save(trip)
+                storage.save(user)
+                storage.save(host)
+                return redirect(url_for('display_notifications'))
+            else:
+                abort(404)
         else:
             abort(404)
     else:

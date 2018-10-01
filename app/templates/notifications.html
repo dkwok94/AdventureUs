@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-<SCRIPT>
+<STYLE>
 .modal-header {
 	padding: 0px;
 }
-</SCRIPT>
+</STYLE>
 <DIV id="sentnotes" class="container text-center sentnotes">
 	<H3>Sent Requests</H3>
 	{% if sent %}
 		{% for note in sent %}	
-		<BUTTON id="internal_text" class="note" data-id="{{ note.id }}" data-tripid="{{ note.trip_id }}" data-toggle="modal" data-target="#sentInfo">
+		<BUTTON id="internal_text" class="note sentnote" data-id="{{ note.id }}" data-tripid="{{ note.trip_id }}" data-toggle="modal" data-target="#sentInfo">
 			<P class="recipient"><STRONG>Request to: {{ note.recipient }}</STRONG></P>
 			<P class="dest_note">{{ note.trip_info['city'] }}, {{ note.trip_info['country'] }} {{ note.trip_info['date_range'] }}</P>
 		</BUTTON>
@@ -23,7 +23,7 @@
 	<H3>Received Requests</H3>
 	{% if received %}
 		{% for note in received %}	
-		<BUTTON id="internal_text" class="note" data-id="{{ note.id }}" data-tripid="{{ note.trip_id }}" data-toggle="modal" data-target="#receiveInfo">
+		<BUTTON id="internal_text" class="note receivenote" data-id="{{ note.id }}" data-tripid="{{ note.trip_id }}" data-toggle="modal" data-target="#receiveInfo">
 			<P class="sender"><STRONG>Request from: {{ note.sender }}</STRONG></P>
 			<P class="dest_note">{{ note.trip_info['city'] }}, {{ note.trip_info['country'] }} {{ note.trip_info['date_range'] }}</P>
 		</BUTTON>
@@ -34,17 +34,13 @@
 </DIV>
 <!-- Modal Sent Request -->
 <DIV class="modal fade" id="sentInfo" tabindex="-1" role="dialog" aria-labelledby="Host Adventure" aria-hidden="true">
-  <DIV class="modal-dialog notification-dialog" role="document">
+  <DIV id="sent_notification_dialog" class="modal-dialog notification-dialog" role="document">
     <DIV class="modal-content">
       <DIV class="modal-header note-header">
         <BUTTON type="button" class="close note-close" data-dismiss="modal" aria-label="Close">&times;</BUTTON>
       </DIV>
-      <DIV class="modal-body">
-	  <DIV class="inforow">
-		<DIV class="tripcolumn">
-			<H5 class="notemodaltext">Request to Derek Kwok pending!</H5>
-		</DIV>
-	  </DIV>
+      <DIV class="modal-body sent-modal-body">
+	      <!-- Placeholder for dynamic AJAX content -->
       </DIV>
       <DIV class="modal-footer">
       </DIV>
@@ -54,12 +50,12 @@
 
 <!-- Modal Received Request -->
 <DIV class="modal fade" id="receiveInfo" tabindex="-1" role="dialog" aria-labelledby="Host Adventure" aria-hidden="true">
-  <DIV class="modal-dialog notification-dialog" role="document">
+  <DIV id="received_notification_dialog" class="modal-dialog notification-dialog" role="document">
     <DIV class="modal-content">
       <DIV class="modal-header note-header">
         <BUTTON type="button" class="close note-close" data-dismiss="modal" aria-label="Close">&times;</BUTTON>
       </DIV>
-      <DIV class="modal-body">
+      <DIV class="modal-body receive-modal-body">
 	  <DIV class="inforow">
 		<DIV class="tripcolumn">
 			<H5 class="notemodaltext">Derek Kwok has requested to join</H5>
