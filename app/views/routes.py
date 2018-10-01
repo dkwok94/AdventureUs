@@ -15,6 +15,9 @@ from models.user import User
 @application.route('/', methods=['GET', 'POST'])
 @application.route('/login', methods=['GET', 'POST'])
 def login():
+    '''
+        User login function for login form
+    '''
     if current_user.is_authenticated:
         return redirect(url_for('display_profile'))
     form = LoginForm(request.form)
@@ -30,6 +33,9 @@ def login():
 
 @application.route('/logout')
 def logout():
+    '''
+        User logout function to sign the user out of their account
+    '''
     logout_user()
     return redirect(url_for('login'))
 
@@ -37,6 +43,9 @@ def logout():
 @application.route('/profile', methods=["GET", "POST"])
 @login_required
 def display_profile():
+    '''
+        Loads the current user profile from the database
+    '''
     hosted_trips = []
     active_trips = []
     for trip in current_user.hosted_trips:
@@ -53,6 +62,9 @@ def display_profile():
 @application.route('/adventures', methods=["GET", "POST"])
 @login_required
 def display_adventures():
+    '''
+        Loads the current trips with active status from the database
+    '''
     if request.method == "POST":
         content = request.get_json()
         print(content)
@@ -70,6 +82,9 @@ def display_adventures():
 @application.route('/notifications', methods=["GET"])
 @login_required
 def display_notifications():
+    '''
+        Displays the user's received and sent requests/notifications
+    '''
     sent = []
     received = []
     session['url'] = url_for('display_notifications')
@@ -85,6 +100,9 @@ def display_notifications():
 @application.route('/trip_roster', methods=["GET", "POST"])
 @login_required
 def trip_roster():
+    '''
+        Populates the modal footer with all users on a specific trip
+    '''
     users = []
     if request.method == "POST":
         content = request.get_json()
@@ -103,6 +121,10 @@ def trip_roster():
 @application.route('/get_trip/<trip_id>', methods=["GET"])
 @login_required
 def get_trip(trip_id):
+    '''
+        Grabs a specific trip from the database based on the trip ID to be
+        used for dynamic AJAX updates on modals
+    '''
     trip = storage.get("Trip", trip_id)
     if trip:
         return jsonify(trip.to_dict_mongoid())
@@ -112,6 +134,10 @@ def get_trip(trip_id):
 @application.route('/get_sender/<notification_id>', methods=["GET"])
 @login_required
 def get_sender(notification_id):
+    '''
+        Grabs the notification sender user from the database in order
+        to dynamically update the message modal
+    '''
     note = storage.get("Notification", notification_id)
     if note:
         user = storage.get_user(note.sender)
@@ -123,6 +149,9 @@ def get_sender(notification_id):
 @application.route('/createtrip', methods=["GET", "POST"])
 @login_required
 def create_trip():
+    '''
+        Creates a new trip object in the database
+    '''
     tripform = CreateTrip(request.form)
     if request.method == "POST" and tripform.validate_on_submit():
         trip_dict = {"city": tripform.city.data,
@@ -149,6 +178,10 @@ def create_trip():
 @application.route('/send_notification/<trip_id>', methods=["POST"])
 @login_required
 def send_notification(trip_id):
+    '''
+        Sends a notification to a trip host and saves the notification
+        to the user's sent notifications and the host's received notifications
+    '''
     note = models.Notification()
     trip = storage.get("Trip", trip_id)
     if trip:
@@ -186,6 +219,10 @@ def send_notification(trip_id):
 @application.route('/notification/<noteid>/accepted_request/<tripid>')
 @login_required
 def accept_request(noteid, tripid):
+    '''
+        The sequence of events that occur after the host of a trip
+        accepts another user's request to join their trip
+    '''
     trip = storage.get("Trip", tripid)
     if trip:
         note = storage.get("Notification", noteid)
@@ -193,21 +230,11 @@ def accept_request(noteid, tripid):
             user = storage.get_user(note.sender)
             host = storage.get_user(note.recipient)
             if user and host:
-                print("Before action:")
-                print(trip.users)
-                print(user.active_trips)
-                print(user.notifications)
-                print(host.notifications)
                 trip.users.append(user.username)
                 user.active_trips.append(trip.id)
                 user.notifications['approved'].append(note.id)
                 user.notifications['sent'].remove(note.id)
                 host.notifications['received'].remove(note.id)
-                print("After action:")
-                print(trip.users)
-                print(user.active_trips)
-                print(user.notifications)
-                print(host.notifications)
                 storage.save(trip)
                 storage.save(user)
                 storage.save(host)
