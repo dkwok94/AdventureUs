@@ -199,6 +199,10 @@ def send_notification(trip_id):
                     print("Already sent")
                     return jsonify({"response": "Request already sent..."})
 
+            # Check if user has already joined the selected trip
+            if current_user.username in trip.users:
+                return jsonify({"response": "Already part of this trip"})
+
             # Send a request to the host that current user wants to join
             note.sender = current_user.username
             note.recipient = trip.host
