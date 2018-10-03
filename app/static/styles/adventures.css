@@ -13,7 +13,7 @@
 	color: #ffffffe0;
 	opacity: 1;
 	padding: 20px;
-	width: 750px;
+	max-width: 750px;
 }
 .searchtrips {
 	display: inline-flex;

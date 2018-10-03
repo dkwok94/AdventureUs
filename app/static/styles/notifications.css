@@ -28,7 +28,7 @@
   	color: #ffffffe0;
   	opacity: 1;
   	padding: 20px;
-  	width: 750px;
+  	max-width: 750px;
 }
 .receivednotes {
 	box-shadow: 0 2px 7px 2px rgba(0, 0, 0, 0.51);
@@ -39,7 +39,7 @@
 	color: #ffffffe0;
 	opacity: 1;
 	padding: 20px;
-	width: 750px;
+	max-width: 750px;
 }
 .note {
   	width: 455px;

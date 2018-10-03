@@ -6,7 +6,7 @@
 	color: #ffffffe0;
 	opacity: 1;
 	padding: 20px;
-	width: 500px;
+	max-width: 500px;
 	float:left;
 }
 .column {
@@ -28,7 +28,7 @@
 	color: #ffffffe0;
 	opacity: 1.0;
 	padding: 20px;
-	width: 700px;
+	max-width: 750px;
 }
 .description {
 	background-color: #141B27;
