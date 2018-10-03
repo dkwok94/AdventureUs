@@ -38,7 +38,7 @@ $(document).ready(function () {
 	    contentType: 'application/json',
 	    success: function (sender) {
 	      console.log(sender);
-	      $('#receive-column').append('<H6 class="notemodaltext">' + sender.first_name + ' ' + sender.last_name + ' (' + sender.username + ')' + ' has requested to join!</H6><IMG src="' + sender.profile_pic + '" class="img-circle img-responsive note-person">');
+	      $('#receive-column').append('<H6 class="notemodaltext">' + sender.first_name + ' ' + sender.last_name + ' (' + sender.username + ')' + ' has requested to join!</H6><A target="_blank" href="/users/' + sender.username + '"><IMG src="' + sender.profile_pic + '" class="img-circle img-responsive note-person"></A>');
 	    },
 	    error: function(response) {
 	      $('#receive-column').append('<H6 class="notemodaltext">Sender does not exist</H6>');

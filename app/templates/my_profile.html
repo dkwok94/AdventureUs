@@ -44,7 +44,7 @@
 			<!-- Placeholder for AJAX dynamic content -->
 		</DIV>
         <BUTTON type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</BUTTON>
-	<BUTTON type="button" class="btn btn-danger">DELETE TRIP</BUTTON>
+	<BUTTON type="button" class="btn btn-danger delete">DELETE TRIP</BUTTON>
       </DIV>
     </DIV>
   </DIV>
@@ -74,7 +74,6 @@
 		{% if current_user.last_name %}
 			{{ current_user.last_name }}
 		{% endif %}</H2>
-	<BUTTON type="button" class="btn btn-danger login">Add Friend</BUTTON>
 	<BUTTON type="button" class="btn btn-danger login">Edit Profile</BUTTON>
     <DIV id="internal_text" class="container text-center description">
 	    <P class="biotext">{{ current_user.bio }}</P>

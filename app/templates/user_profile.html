@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block content %}
+<DIV class="column column1">
+  <DIV id="trips" class="container text-center trips">
+	<H2>Hosted Adventures</H2>
+	{% if hosted_trips[0] is defined %}
+		{% for trip in hosted_trips %}
+		<BUTTON id="internal_text" class="profileactivetrip" data-id="{{ trip.id }}" data-toggle="modal" data-target="#hostTripInfo">
+				<P class="tripinfo"><STRONG>{{ trip.city }}, {{ trip.country }}</STRONG></P>
+				<P class="tripdate">{{ trip.date_range }}</P>
+		</BUTTON>
+		{% endfor %}
+	{% else %}
+		<H4>No trips have been hosted yet!</H4>
+	{% endif %}
+  </DIV>
+  <DIV id="trips" class="container text-center trips">
+	<H2>Other Adventures</H2>
+	{% if active_trips[0] is defined %}
+		{% for trip in active_trips %}
+		<BUTTON id="internal_text" class="profileactivetrip" data-id="{{ trip.id }}" data-toggle="modal" data-target="#activeTripInfo">
+				<P class="tripinfo"><STRONG>{{ trip.city }}, {{ trip.country }}</STRONG></P>
+				<P class="tripdate">{{ trip.date_range }}</P>
+		</BUTTON>
+		{% endfor %}
+	{% else %}
+		<H4>You have not joined any trips yet!</H4>
+	{% endif %}
+  </DIV>
+</DIV>
+<!-- Modal -->
+<DIV class="modal fade" id="hostTripInfo" tabindex="-1" role="dialog" aria-labelledby="Host Adventure" aria-hidden="true">
+  <DIV class="modal-dialog" role="document">
+    <DIV class="modal-content">
+      <DIV class="modal-header trip-header">
+	      <!-- Placeholder for AJAX dynamic content -->
+      </DIV>
+      <DIV class="modal-body trip-body">
+	      <!-- Placeholder for AJAX dynamic content -->
+      </DIV>
+      <DIV class="modal-footer trip-footer">
+		<DIV class="buddies">
+			<!-- Placeholder for AJAX dynamic content -->
+		</DIV>
+        <BUTTON type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</BUTTON>
+      </DIV>
+    </DIV>
+  </DIV>
+</DIV>
+<!-- Modal -->
+<DIV class="modal fade" id="activeTripInfo" tabindex="-1" role="dialog" aria-labelledby="Host Adventure" aria-hidden="true">
+  <DIV class="modal-dialog" role="document">
+    <DIV class="modal-content">
+      <DIV class="modal-header trip-header">
+	      <!-- Placeholder for AJAX dynamic content -->
+      </DIV>
+      <DIV class="modal-body trip-body">
+	      <!-- Placeholder for AJAX dynamic content -->
+      </DIV>
+      <DIV class="modal-footer trip-footer">
+		<DIV class="buddies">
+		</DIV>
+      <BUTTON type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</BUTTON>
+      </DIV>
+    </DIV>
+  </DIV>
+</DIV>
+<DIV class="column column2">
+  <DIV id="bio" class="container text-center profile">
+	  <IMG src="{{ user.profile_pic }}" class="img-circle profile_pic" alt="profilepicture">
+	<H2>{{ user.first_name }} 
+		{% if user.last_name %}
+			{{ user.last_name }}
+		{% endif %}</H2>
+	<BUTTON type="button" class="btn btn-danger login">Add Friend</BUTTON>
+	<DIV id="internal_text" class="container text-center description">
+	    <P class="biotext">{{ user.bio }}</P>
+    </DIV>
+</DIV>
+<DIV id="destinations" class="container text-center profile">
+  <H3>Dream Destinations</H3>
+  <!--<DIV class="row text-center">-->
+  	{% for dest in user.destinations %}
+    	<DIV class="place">
+		<P><STRONG>{{ dest['city'] }}, {{ dest['country'] }}</STRONG></P>
+	</DIV>
+	{% endfor %}
+</DIV>
+<DIV id="interests" class="container text-center profile">
+  <H3>Interests</H3>
+  <DIV id="internal_text" class="container text-center description">
+	  <P class="biotext">{{ user.interests }}</P>
+  </DIV>
+</DIV>
+<DIV id="languages" class="container text-center profile">
+  <H3>Languages</H3>
+  	{% for lang in user.languages %}
+  	<DIV class="language">
+		<DIV><STRONG>{{ lang }}</STRONG></DIV>
+	</DIV>
+	{% endfor %}
+</DIV>
+<DIV id="contact" class="container text-center profile">
+  <H3>Contact Info</H3>
+  <P class="biotext">I can be reached here...</P>
+</DIV>
+</DIV>
+{% endblock %}

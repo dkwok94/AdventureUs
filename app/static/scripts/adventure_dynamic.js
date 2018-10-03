@@ -16,10 +16,9 @@ $(document).ready(function () {
       contentType: 'application/json',
       data: json,
       success: function (trip) {
-        console.log(trip.users);
-	$('.join').attr('data-id', trip.id);
+	$('.join').attr('data-tripid', trip.id);
 	$('.trip-header').append('<H2 class="modal-title" id="where">' + trip.city + ', ' + trip.country + '</H2><BUTTON type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</BUTTON>');
-	$('.trip-body').append('<DIV class="inforow"><DIV class="tripcolumn"><H4 class="host tripmodaltext"><STRONG>HOST</STRONG><H4><H5 class="hostname tripmodaltext">' + trip.host_firstname + ' ' + trip.host_lastname + '</H5><H6 class="hostname tripmodaltext">' + trip.host + '</H6><IMG src="' + trip.host_pic + '" class="img-circle img-responsive person" alt="' + trip.host_firstname + '"></DIV><DIV class="tripcolumn"><H4 class="tripinformation tripmodaltext"><STRONG>TRIP INFORMATION</STRONG></H4><H4 class="daterange tripmodaltext">' + trip.date_range + '</H4><P class="tripdescription tripmodaltext">' + trip.description + '</P></DIV></DIV>');
+	$('.trip-body').append('<DIV class="inforow"><DIV class="tripcolumn"><H4 class="host tripmodaltext"><STRONG>HOST</STRONG><H4><H5 class="hostname tripmodaltext">' + trip.host_firstname + ' ' + trip.host_lastname + '</H5><H6 class="hostname tripmodaltext">Username: ' + trip.host + '</H6><A target="_blank" href="/users/' + trip.host + '"><IMG src="' + trip.host_pic + '" class="img-circle img-responsive person" alt="' + trip.host_firstname + '"></A></DIV><DIV class="tripcolumn"><H4 class="tripinformation tripmodaltext"><STRONG>TRIP INFORMATION</STRONG></H4><H4 class="daterange tripmodaltext">' + trip.date_range + '</H4><P class="tripdescription tripmodaltext">' + trip.description + '</P></DIV></DIV>');
 	$.ajax({
 	  type: 'POST',
 	  url: '/trip_roster',
@@ -28,7 +27,7 @@ $(document).ready(function () {
 	  success: function (users) {
  	    $('.trip-footer>.buddies').append('<P class="others modalfootertext">Other users on this trip:</P><DIV class="buddiesrow"></DIV>');
 	    for (user of users) {
-	      $('.trip-footer>.buddies>.buddiesrow').append('<IMG src="' + user.profile_pic + '" class="img-circle rowperson" alt="' + user.first_name + '">');
+	      $('.trip-footer>.buddies>.buddiesrow').append('<A target="_blank" href="/users/' + user.username + '"><IMG src="' + user.profile_pic + '" class="img-circle rowperson" alt="' + user.first_name + '" data-username="' + user.username + '"></A>');
 	    }
 	  },
 	  error: function (response) {
@@ -42,6 +41,7 @@ $(document).ready(function () {
     });
   });
 });
+
 
 // Dynamic Modal Content Loader for Profile Page
 
@@ -61,9 +61,11 @@ $(document).ready(function () {
       contentType: 'application/json',
       data: json,
       success: function (trip) {
-        console.log(trip.users);
+
+        // Pin trip ID onto delete button for deletion route
+	$('.delete').attr('data-tripid', trip.id);
 	$('.trip-header').append('<H2 class="modal-title" id="where">' + trip.city + ', ' + trip.country + '</H2><BUTTON type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</BUTTON>');
-	$('.trip-body').append('<DIV class="inforow"><DIV class="tripcolumn"><H4 class="host tripmodaltext"><STRONG>HOST</STRONG><H4><H5 class="hostname tripmodaltext">' + trip.host_firstname + ' ' + trip.host_lastname + '</H5><H6 class="hostname tripmodaltext">' + trip.host + '</H6><IMG src="' + trip.host_pic + '" class="img-circle img-responsive person" alt="' + trip.host_firstname + '"></DIV><DIV class="tripcolumn"><H4 class="tripinformation tripmodaltext"><STRONG>TRIP INFORMATION</STRONG></H4><H4 class="daterange tripmodaltext">' + trip.date_range + '</H4><P class="tripdescription tripmodaltext">' + trip.description + '</P></DIV></DIV>');
+	$('.trip-body').append('<DIV class="inforow"><DIV class="tripcolumn"><H4 class="host tripmodaltext"><STRONG>HOST</STRONG><H4><H5 class="hostname tripmodaltext">' + trip.host_firstname + ' ' + trip.host_lastname + '</H5><H6 class="hostname tripmodaltext">Username: ' + trip.host + '</H6><A target="_blank" href="/users/' + trip.host + '"><IMG src="' + trip.host_pic + '" class="img-circle img-responsive person" alt="' + trip.host_firstname + '"></A></DIV><DIV class="tripcolumn"><H4 class="tripinformation tripmodaltext"><STRONG>TRIP INFORMATION</STRONG></H4><H4 class="daterange tripmodaltext">' + trip.date_range + '</H4><P class="tripdescription tripmodaltext">' + trip.description + '</P></DIV></DIV>');
 	$.ajax({
 	  type: 'POST',
 	  url: '/trip_roster',
@@ -72,7 +74,7 @@ $(document).ready(function () {
 	  success: function (users) {
  	    $('.trip-footer>.buddies').append('<P class="others modalfootertext">Other users on this trip:</P><DIV class="buddiesrow"></DIV>');
 	    for (user of users) {
-	      $('.trip-footer>.buddies>.buddiesrow').append('<IMG src="' + user.profile_pic + '" class="img-circle rowperson" alt="' + user.first_name + '">');
+	      $('.trip-footer>.buddies>.buddiesrow').append('<A target="_blank" href="/users/' + user.username + '"><IMG src="' + user.profile_pic + '" class="img-circle rowperson" alt="' + user.first_name + '" data-username="' + user.username + '"></A>');
 	    }
 	  },
 	  error: function (response) {
