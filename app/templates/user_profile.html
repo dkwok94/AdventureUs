@@ -3,7 +3,7 @@
 {% block content %}
 <DIV class="column column1">
   <DIV id="trips" class="container text-center trips">
-	<H2>Hosted Adventures</H2>
+	<H3>Hosted Adventures</H3>
 	{% if hosted_trips[0] is defined %}
 		{% for trip in hosted_trips %}
 		<BUTTON id="internal_text" class="profileactivetrip" data-id="{{ trip.id }}" data-toggle="modal" data-target="#hostTripInfo">
@@ -16,7 +16,7 @@
 	{% endif %}
   </DIV>
   <DIV id="trips" class="container text-center trips">
-	<H2>Other Adventures</H2>
+	<H3>Other Adventures</H3>
 	{% if active_trips[0] is defined %}
 		{% for trip in active_trips %}
 		<BUTTON id="internal_text" class="profileactivetrip" data-id="{{ trip.id }}" data-toggle="modal" data-target="#activeTripInfo">

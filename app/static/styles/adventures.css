@@ -5,15 +5,13 @@
 	border-radius: 4px;
 }
 .currenttrips {
-	background-color: #000022;
-	border-radius: 20px;
-	border-style: solid;
-	border-color: #ffffff;
-	border-width: 1.5px;
+	box-shadow: 0 2px 7px 2px rgba(0, 0, 0, 0.51);
+	background-color: #0E1C36;
+	border-radius: 5px;
 	margin-top: 20px;
 	margin-bottom: 20px;
-	color: #ffffff;
-	opacity: 0.95;
+	color: #ffffffe0;
+	opacity: 1;
 	padding: 20px;
 	width: 750px;
 }
@@ -34,7 +32,7 @@ div.buddiesrow img {
 }
 .rowperson {
 	border: 3px solid;
-	border-color: #52528C;
+	border-color: #3c3e42;
     	width: 20%;
     	height: 20%;
     	opacity: 1.0;
@@ -43,7 +41,7 @@ div.buddiesrow img {
 	margin-right: 20px;
 }
 .tripmodaltext, .modalfootertext {
-	color: #ffffff;
+	color: #ffffffe0;
 }
 .modalfootertext {
 	margin: 0px;
@@ -57,7 +55,7 @@ div.buddiesrow img {
 }
 .person {
     	border: 3px solid;
-	border-color: #52528C;
+	border-color: #3c3e42;
 	width: 60%;
     	opacity: 1.0;
 }

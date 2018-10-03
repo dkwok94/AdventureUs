@@ -14,18 +14,17 @@
 	font-size: 12px;
 }
 .activetrip:hover, .profileactivetrip:hover {
-	background-color: #dc201a;
+	background-color: #7e1616;
 }
 .profileactivetrip {
 	width: 455px;
 	margin-left: 0px;
 	margin-right: 0px;
-	background-color: #006494;
-	border-radius: 10px;
+	background-color: #004e74;
+	border-radius: 3px;
 	height: 50px;
 	margin-bottom: 10px;
-	border-color: #006494;
-	border-style: solid;
+	border-style: none;
 }
 .profileactivetrip:focus,.profileactivetrip:active {
 	outline: none !important;
@@ -35,12 +34,11 @@
 	width: 455px;
 	margin-left: 0px;
 	margin-right: 0px;
-	background-color: #006494;
-	border-radius: 10px;
+	background-color: #004e74;
+	border-radius: 3px;
 	height: 50px;
 	margin-bottom: 10px;
-	border-color: #006494;
-	border-style: solid;
+	border-style: none;
 }
 .activetrip:focus,.activetrip:active {
 	outline: none !important;

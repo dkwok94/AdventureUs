@@ -9,7 +9,6 @@
   <SCRIPT src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></SCRIPT>
   <SCRIPT src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></SCRIPT>
   <SCRIPT src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></SCRIPT>
-  <LINK href='https://fonts.googleapis.com/css?family=Dekko' rel='stylesheet'>
   <LINK href='https://fonts.googleapis.com/css?family=Kalam' rel='stylesheet'>
   <LINK rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
   <SCRIPT type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></SCRIPT>
@@ -39,14 +38,16 @@
       <IMG src="../static/icons/logo.png" class="navbar-brand logo" href="#">
     </DIV>
     <DIV class="collapse navbar-collapse" id="myNavbar">
-      <UL class="nav navbar-nav navbar-right">
+      <UL class="nav navbar-nav navbar-left">
         <LI>HOME</LI>
 	<LI><A href="{{ url_for('display_profile') }}">PROFILE</A></LI>
 	<LI><A href="{{ url_for('display_notifications') }}">NOTIFICATIONS</A></LI>
 	<LI><A href="{{ url_for('display_adventures') }}">ADVENTURES</A></LI>
 	<LI><A href="{{ url_for('display_adventures') }}">FRIENDS</A></LI>
-	<LI><BUTTON type="button" data-toggle="modal" data-target="#createTrip" class="btn btn-danger">HOST ADVENTURE</BUTTON></LI>
-	<LI><BUTTON type="button" class="btn btn-danger"><A href="{{ url_for('logout') }}" class="logout">LOGOUT</A></BUTTON></LI>
+      </UL>
+      <UL class="nav navbar-nav navbar-right">
+	<LI><BUTTON type="button" id="host" class="btn btn-danger" data-toggle="modal" data-target="#createTrip">HOST ADVENTURE</BUTTON></LI>
+	<LI><BUTTON type="button" id="logout" class="btn btn-danger"><A href="{{ url_for('logout') }}" class="logout">LOGOUT</A></BUTTON></LI>
       </UL>
     </DIV>
   </DIV>

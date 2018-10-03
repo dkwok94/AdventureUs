@@ -1,58 +1,70 @@
 body {
 	padding-top: 52px;
-	background-color: #7C9EB2;
+	background-color: #677897;
 }
 	
 h2, h3 {
-	font-family: Kalam;
+	font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
 }
 .nav>li {
 	position: relative;
 	display: block;
-	padding-right: 20px;
-	padding-left: 0px;
+	padding-right: 10px;
+	padding-left: 10px;
 	padding-top: 20px;
 	padding-bottom: 20px;
-	background-color: #0E1C36;
-	color: #ffffff;
-	font-family: Kalam;
+	background-color: #000020;
+	color: #ffffffe0;
+	font-family: Century Gothic, sans-serif;
 }
 .navbar-default .navbar-nav>li>a {
 	display: inline;
 	padding: 0px;
-	color: #ffffff;
+	color: #ffffffe0;
 }
 .navbar-default .navbar-nav>li>a:hover {
-	color: #006494;
+	color: #004e74;
 }
 .logo {
 	height: 60px;
 }
 .logout {
 	padding: 0px;
-	color: #ffffff;
+	color: #ffffffe0;
 }
 .logout:hover {
 	text-decoration: none;
-	color: #ffffff;
+	color: #ffffffe0;
 }
-.nav>li:hover, .nav>li>a:hover {
-	color: #006494;
+.nav>li:hover {
+	border-bottom-style: solid;
+	border-bottom-color: #004e74;
+}
+#host:hover {
+	border-bottom-style: none;
+}
+#logout:hover {
+	border-bottom-style: none;
 }
 .navbar-brand {
 	padding: 5px 5px;
 }
 .btn {
 	padding: 0px 10px;
-	border-radius: 20px;
-	background-color: #006494;
-	border-color: #006494;
-	font-family: Kalam;
+	border-radius: 2px;
+	background-color: #004e74;
+	border-style: none;
+	font-family: Century Gothic, sans-serif;
+}
+.btn:hover{
+	background-color: #7e1616;
 }
 .btn:focus,.btn:active {
 	outline: none !important;
 	box-shadow: none;
 }
 .navbar-default {
-	background-color: #0E1C36;
+	box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.51);
+	background-color: #000020;
+	border-color: #3C3E42;
 }

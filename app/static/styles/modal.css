@@ -1,3 +1,9 @@
+hr {
+	border-top: 1px solid #3C3E42;
+}
+.modal-content {
+	background-color: #3C3E42;
+}
 .col-25 {
     float: left;
     width: 25%;
@@ -11,36 +17,36 @@
 label {
     padding: 12px 12px 12px 0;
     display: inline-block;
-	color: #ffffff;
+	color: #ffffffe0;
 	font-size: 14px;
 	text-shadow: 1px 1px 1px #000000;
 	font-weight: normal;
 }
 .close {
-	font-family: Kalam;
 	font-size: 40px;
-	color: #006494;
+	color: #004E74;
 	opacity: 1;
 	text-shadow: 1px 1px 1px #000000;
 }
 .close:hover {
-	color: #dc201a;
+	color: #7e1616;
 	opacity: 1;
 }
 .modal-header {
-    background-color: #001242;
-    color: #ffffff;
+    background-color: #0E1C36;
+    color: #ffffffe0;
 	padding: 40px 50px;
     text-align: center;
     font-size: 30px;
-	font-family: Kalam;
+    border-bottom: 2px solid #3C3E42;
 }
 .modal-body {
-	background-color: #1F487E;
+	background-color: #141b27;
 	padding: 40px 50px;
 }
 .modal-footer {
-	background-color: #001242;
+	background-color: #0E1C36;
+	border-top: 2px solid #3C3E42;
 }
 .modal-title {
 	display: inline;
@@ -48,14 +54,14 @@ label {
 input[type=text], select, textarea {
     width: 100%;
     padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 1px solid #3C3E42;
+    border-radius: 3px;
     resize: vertical;
-	background-color: #001242;
-	color: #ffffff;
+	background-color: #0E1C36;
+	color: #ffffffe0;
 }
 ::placeholder {
-	color: #ffffff;
+	color: #ffffffe0;
 	opacity: 1;
 }
 .cancelBtn {
