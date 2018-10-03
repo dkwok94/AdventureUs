@@ -1,101 +1,17 @@
 #!/usr/bin/python3
 '''
-    Main routes for Flask application
+    Creation, Updating, Deleting functions from Flask application
 '''
 import models
 from models import storage
 from app import application
 from flask import render_template, flash, redirect, url_for, request, session
 from flask import jsonify, abort
-from app.forms import LoginForm, CreateTrip
-from flask_login import current_user, login_user, logout_user, login_required
-from models.user import User
-
-# Login-Logout view functions
-@application.route('/', methods=['GET', 'POST'])
-@application.route('/login', methods=['GET', 'POST'])
-def login():
-    '''
-        User login function for login form
-    '''
-    if current_user.is_authenticated:
-        return redirect(url_for('display_profile'))
-    form = LoginForm(request.form)
-    if request.method == "POST" and form.validate_on_submit():
-        user = storage.get_user(form.username.data)
-        if user is None or not user.check_password(form.password.data):
-            flash('Invalid username or password')
-            return redirect(url_for('login'))
-        login_user(user)
-        return redirect(url_for('display_profile'))
-    return render_template('login.html', form=form)
+from app.forms import CreateTrip
+from flask_login import current_user, login_required
 
 
-@application.route('/logout')
-def logout():
-    '''
-        User logout function to sign the user out of their account
-    '''
-    logout_user()
-    return redirect(url_for('login'))
-
-# Display view functions
-@application.route('/profile', methods=["GET", "POST"])
-@login_required
-def display_profile():
-    '''
-        Loads the current user profile from the database
-    '''
-    hosted_trips = []
-    active_trips = []
-    for trip in current_user.hosted_trips:
-        hosted_trips.append(storage.get("Trip", trip))
-    for trip in current_user.active_trips:
-        active_trips.append(storage.get("Trip", trip))
-    session['url'] = url_for('display_profile')
-    tripform = CreateTrip(request.form)
-    return render_template('profile.html', tripform=tripform,
-                            hosted_trips=hosted_trips,
-                            active_trips=active_trips)
-
-
-@application.route('/adventures', methods=["GET", "POST"])
-@login_required
-def display_adventures():
-    '''
-        Loads the current trips with active status from the database
-    '''
-    if request.method == "POST":
-        content = request.get_json()
-        print(content)
-        trip = storage.get("Trip", content['id'])
-        if trip:
-            return jsonify(trip.to_dict())
-        else:
-            abort(404)
-    all_trips = storage.all(models.Trip)
-    session['url'] = url_for('display_adventures')
-    tripform = CreateTrip(request.form)
-    return render_template('adventures.html', tripform=tripform,
-                            all_trips=all_trips)
-
-@application.route('/notifications', methods=["GET"])
-@login_required
-def display_notifications():
-    '''
-        Displays the user's received and sent requests/notifications
-    '''
-    sent = []
-    received = []
-    session['url'] = url_for('display_notifications')
-    tripform = CreateTrip(request.form)
-    for note in current_user.notifications['sent']:
-        sent.append(storage.get("Notification", note))
-    for note in current_user.notifications['received']:
-        received.append(storage.get("Notification", note))
-    return render_template('notifications.html', tripform=tripform, 
-                            sent=sent, received=received)
-
+# Getting Functions for Dynamic Loading
 
 @application.route('/trip_roster', methods=["GET", "POST"])
 @login_required
@@ -146,6 +62,32 @@ def get_sender(notification_id):
         else:
             abort(404)
 
+@application.route('/users/<username>', methods=["GET"])
+@login_required
+def get_user_profile(username):
+    if username == current_user.username:
+        return redirect(url_for('display_profile'))
+    hosted_trips = []
+    active_trips = []
+    user = storage.get_user(username)
+    if user:
+        for trip in user.hosted_trips:
+            hosted_trips.append(storage.get("Trip", trip))
+        for trip in user.active_trips:
+            active_trips.append(storage.get("Trip", trip))
+        session['url'] = url_for('get_user_profile', username=username)
+        tripform = CreateTrip(request.form)
+        return render_template('user_profile.html', user=user,
+                                hosted_trips=hosted_trips,
+                                active_trips=active_trips,
+                                tripform=tripform)
+    else:
+        abort(404)
+
+#######################################################################
+
+# Object Creation Functions
+
 @application.route('/createtrip', methods=["GET", "POST"])
 @login_required
 def create_trip():
@@ -174,7 +116,7 @@ def create_trip():
     else:
         return "", 204
 
-# Send Notifications
+
 @application.route('/send_notification/<trip_id>', methods=["POST"])
 @login_required
 def send_notification(trip_id):
@@ -219,6 +161,31 @@ def send_notification(trip_id):
             abort(404)
     else:
         abort(404)
+
+#######################################################################
+
+# Object Deletion Functions
+
+@application.route('/delete_trip/<tripid>', methods=["DELETE"])
+@login_required
+def delete_trip(tripid):
+    trip = storage.get("Trip", tripid)
+    if trip:
+        for user in trip.users:
+            person = storage.get_user(user)
+            if person.username == trip.host:
+                person.hosted_trips.remove(tripid)
+            else:
+                person.active_trips.remove(tripid)
+            storage.save(person)
+        storage.delete(trip)
+        return jsonify(dict(redirect=url_for('display_profile')))
+    else:
+        abort(404)
+
+#######################################################################
+
+# Notification Accept/Reject Functions
 
 @application.route('/notification/<noteid>/accepted_request/<tripid>')
 @login_required
