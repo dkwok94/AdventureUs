@@ -24,7 +24,7 @@
 	margin-right: 480px;
 }
 div.buddiesrow {
-	display: flex;
+	text-align: left;
 	overflow: auto;
 	margin-bottom: 20px;
 	white-space: nowrap;

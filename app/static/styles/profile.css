@@ -32,13 +32,16 @@
 	color: #ffffff;
 	opacity: 0.95;
 	padding: 20px;
-	width: 750px;
+	width: 700px;
 }
 .description {
 	background-color: #001242;
 	border-radius: 10px;
-	width: 700px;
+	width: 95%;
 	margin-top: 15px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: auto;
 }
 .page {
 	float: left;
