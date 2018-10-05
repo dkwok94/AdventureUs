@@ -1,4 +1,6 @@
-# AdventureUs
+<img src="https://raw.githubusercontent.com/dkwok94/AdventureUs_v1/master/app/static/icons/logo2.png" height="105" width="95">
+
+# AdventureUs 
 
 ## Application
 The goal of AdventureUs is to provide users with a solution to easily finding groups of people to travel with. It is a social network of sorts for travelers who are looking to make new friends.
