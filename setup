@@ -32,5 +32,5 @@ echo "========== Completed Virtual Env Install =========="
 
 
 echo "========== Installing Modules =========="
-sudo pip install -r requirements.txt
+sudo pip3 install -r requirements.txt
 echo "========== Completed Modules Install =========="
