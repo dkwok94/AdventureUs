@@ -11,7 +11,7 @@ from app.forms import CreateTrip
 from flask_login import current_user, login_required
 
 
-# Getting Functions for Dynamic Loading
+# Getter Functions for Dynamic Loading
 
 @application.route('/trip_roster', methods=["GET", "POST"])
 @login_required
@@ -149,6 +149,7 @@ def send_notification(trip_id):
             note.sender = current_user.username
             note.recipient = trip.host
             note.trip_id = trip_id
+            note.purpose = "Join"
             note.trip_info = {"country": trip.country, "city": trip.city, "date_range": trip.date_range}
             current_user.notifications['sent'].append(note.id)
             trip_host.notifications['received'].append(note.id)
@@ -159,6 +160,29 @@ def send_notification(trip_id):
             return jsonify({"response": "Successfully Sent!"})
         else:
             abort(404)
+    else:
+        abort(404)
+
+@application.route('/friend_request/<username>', methods=["GET"])
+@login_required
+def send_friend_request(username):
+    note = models.Notification()
+    note.sender = current_user.username
+    note.recipient = username
+    note.purpose = "Friend"
+    recipient = storage.get_user(username)
+    if recipient:
+        for note in current_user.notifications['sent']:
+            if note.purpose == "Friend" and note.sender == current_user.username \
+                    and note.recipient == recipient.username:
+                        return jsonify({"response": "Friend request pending.."})
+            if recipient.username in current_user.friends:
+                return jsonify({"response": "Already friends"})
+        current_user.notifications['sent'].append(note.id)
+        recipient.notifications['received'].append(note.id)
+        storage.save(note)
+        storage.save(recipient)
+        storage.save(current_user)
     else:
         abort(404)
 

@@ -16,6 +16,10 @@ class Notification(BaseModel):
         else:
             super().__init__()
             self.text = ""
+
+            # Purpose categories: Friend, Join
+            self.purpose = ""
+
             self.sender = ""
             self.recipient = ""
             self.trip_id = ""

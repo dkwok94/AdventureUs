@@ -1,12 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-<FORM class="tripsearch">
-	<DIV class="searchtrips">
-	<INPUT type="text" class="searchbar" placeholder="Type in search term...">
-	<BUTTON type="button" class="searchbtn btn btn-danger">SEARCH</BUTTON>
+<FORM class="form-inline tripsearch text-center">
+	<DIV class="input-group searchtrips">
+		<INPUT type="text" class="form-control searchbar" size="50" placeholder="Type in search term...">
+		<DIV class="input-group-btn searchbutton">
+			<BUTTON type="button" class="searchbtn btn btn-danger">SEARCH</BUTTON>
+		</DIV>
 	</DIV>
 </FORM>
+</DIV>
 <DIV id="currenttrips" class="container text-center currenttrips">
 	<H3>Current Active Trips</H3>
 	{% if all_trips %}

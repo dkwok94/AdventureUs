@@ -17,6 +17,8 @@ class User(UserMixin, BaseModel):
             super().__init__(**kwargs)
         else:
             super().__init__()
+            self.city = ""
+            self.country = ""
             self.username = ""
             self.email = ""
             self.password = ""

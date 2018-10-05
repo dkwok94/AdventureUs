@@ -1,6 +1,6 @@
 body {
 	padding-top: 52px;
-	background-color: #677897;
+	background-color: #5b6e8a;
 }
 	
 h2, h3 {
@@ -13,7 +13,7 @@ h2, h3 {
 	padding-left: 8px;
 	padding-top: 20px;
 	padding-bottom: 20px;
-	background-color: #000020;
+	background-color: #232f44;
 	color: #ffffffe0;
 	font-family: Century Gothic, sans-serif;
 }
@@ -65,6 +65,6 @@ h2, h3 {
 }
 .navbar-default {
 	box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.51);
-	background-color: #000020;
+	background-color: #232f44;
 	border-color: #3C3E42;
 }

@@ -10,7 +10,7 @@ body {
 .jumbotron {
   	border-radius: 30px;
   	padding: 48px;
-	background-color: #0E1C36;
+	background-color: #000020;
 	color: #ffffff;
 	opacity: 0.85;
 	position: fixed;
@@ -21,6 +21,10 @@ body {
 .login {
 	border-radius: 5px;
   	margin: 5px;
+	background-color: #141B27;
+}
+.form-control {
+	color: #ffffffe0;
 }
 .btn {
   	border-color: #006494;

@@ -74,6 +74,7 @@
 		{% if current_user.last_name %}
 			{{ current_user.last_name }}
 		{% endif %}</H2>
+	<H5>{{ current_user.city }}, {{ current_user.country }}</H5>
 	<BUTTON type="button" class="btn btn-danger login">Edit Profile</BUTTON>
     <DIV id="internal_text" class="container text-center description">
 	    <P class="biotext">{{ current_user.bio }}</P>

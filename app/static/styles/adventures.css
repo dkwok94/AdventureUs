@@ -1,8 +1,12 @@
-.searchbar {
-	width: 500px !important;
+.tripsearch {
+	margin-top: 25px;
 }
 .searchbtn {
-	border-radius: 4px;
+	padding: 11px !important;
+	border-radius: 3px !important;
+}
+.searchbar {
+	padding: 20px !important;
 }
 .currenttrips {
 	box-shadow: 0 2px 7px 2px rgba(0, 0, 0, 0.51);
@@ -14,12 +18,6 @@
 	opacity: 1;
 	padding: 20px;
 	max-width: 750px;
-}
-.searchtrips {
-	display: inline-flex;
-	margin-top: 20px;
-	margin-left: 480px;
-	margin-right: 480px;
 }
 div.buddiesrow {
 	text-align: left;

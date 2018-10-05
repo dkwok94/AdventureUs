@@ -73,14 +73,14 @@
 		{% if user.last_name %}
 			{{ user.last_name }}
 		{% endif %}</H2>
-	<BUTTON type="button" class="btn btn-danger login">Add Friend</BUTTON>
+	<H5>{{ user.city }}, {{ user.country }}</H5>
+	<BUTTON type="button" class="btn btn-danger login addfriend" data-friendid="{{ user.username }}">Add Friend</BUTTON>
 	<DIV id="internal_text" class="container text-center description">
 	    <P class="biotext">{{ user.bio }}</P>
     </DIV>
 </DIV>
 <DIV id="destinations" class="container text-center profile">
   <H3>Dream Destinations</H3>
-  <!--<DIV class="row text-center">-->
   	{% for dest in user.destinations %}
     	<DIV class="place">
 		<P><STRONG>{{ dest['city'] }}, {{ dest['country'] }}</STRONG></P>
