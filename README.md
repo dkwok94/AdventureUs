@@ -10,8 +10,8 @@ The goal of AdventureUs is to provide users with a solution to easily finding gr
 2. `cd` into `AdventureUs_v1` directory. Run the `setup` script to install the environment. In Linux, you can do this with `./setup`
 3. The setup script will install Python virtual environment and install all modules and libraries on this virtual library so they can be easily removed.
 4. After the setup script completes, type `source env/bin/activate` to boot into the virual environment.
-5. Run `sudo pip3 install -r requirements.txt` to install all packages into the virtual environment.
-6. Run `sudo python3 -m app.adventureus` and it will be running on `0.0.0.0:5000` per Flask.
+5. Run `pip3 install -r requirements.txt` to install all packages into the virtual environment.
+6. Run `python3 -m app.adventureus` and it will be running on `0.0.0.0:5000` per Flask.
 7. You can log into any of the users listed in the `example_users` file.
 
 ## Technologies Used
