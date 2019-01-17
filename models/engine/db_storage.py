@@ -6,6 +6,7 @@ import pymongo
 from pymongo import MongoClient
 from models.base_model import BaseModel
 import models
+import os
 
 
 class DBStorage:
@@ -20,7 +21,8 @@ class DBStorage:
         '''
             Instantiation of a database storage class
         '''
-        self.__client = MongoClient('localhost', 27017)
+        self.database = os.environ.get('MONGODB_URI')
+        self.__client = MongoClient(self.database)
 
     def all(self, cls=None):
         '''
