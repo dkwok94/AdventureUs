@@ -21,7 +21,7 @@ class DBStorage:
         '''
             Instantiation of a database storage class
         '''
-        self.database = os.environ.get('MONGODB_URI')
+        self.database = os.environ.get('MONGODB_URL')
         self.__client = MongoClient(self.database)
 
     def all(self, cls=None):
