@@ -1,9 +1,10 @@
 <img src="https://raw.githubusercontent.com/dkwok94/AdventureUs_v1/master/app/static/icons/logo2.png" height="105" width="95">
 
 # AdventureUs 
+Application can be accessed here: https://adventureusapp-v1.herokuapp.com/
 
 ## Application
-The goal of AdventureUs is to provide users with a solution to easily finding groups of people to travel with. It is a social network of sorts for travelers who are looking to make new friends.
+The goal of AdventureUs is to provide users with a solution to easily finding groups of people to travel with. It is a social network of sorts for travelers who are looking to make new friends. This is an MVP written in 2 weeks for the trip creation, group joining, and notification sending/approval functionalities. Thus, it is far from finished and I plan to add more functionality to it in the future. Thus, the HOME dashboard page, the FRIENDS features, and the search functionality on the trip tabs do not work yet. They will be updated at a later time!
 
 ## Installation
 1. Clone the repository from GitHub
