@@ -4,7 +4,7 @@
 Application can be accessed here: https://adventureusapp-v1.herokuapp.com/
 
 ## Application
-The goal of AdventureUs is to provide users with a solution to easily finding groups of people to travel with. It is a social network of sorts for travelers who are looking to make new friends. This is an MVP written in about 2 weeks as a personal project for learning that implements the trip creation, group joining, and notification sending/approval functionalities. Thus, it is far from finished and I plan to add more functionality to it in the future. Thus, registration, the HOME dashboard page, the FRIENDS features, and the search functionality on the trip tabs do not work yet. They will be updated at a later time!
+The goal of AdventureUs is to provide users with a solution to easily finding groups of people to travel with. It is a social network of sorts for travelers who are looking to make new friends. This is an MVP written in about 2 weeks as a personal project for learning that implements the trip creation, group joining, and notification sending/approval functionalities. Thus, it is far from finished and I plan to add more functionality to it in the future. Thus, registration, the HOME dashboard page, the FRIENDS features, and the search functionality on the trip tabs do not work yet. They will be updated at a later time, as well as more functionality like chat, messaging, booking tickets, etc!
 
 ## Installation
 1. Clone the repository from GitHub
